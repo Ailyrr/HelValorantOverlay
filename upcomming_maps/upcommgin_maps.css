@@ -1,0 +1,66 @@
+:root{
+    --map_select_dark: #232323de;
+    --map_select_light: #434343de;
+    --map_select_light_trans: #43434300;
+    --overlay_green: #84f1cf;
+    --overlay_trans_green: #366c61;
+    --overlay_red: #bf5460;
+    --overlay_trans_red: #6a323b;
+}
+/*------ UTILITY CLASSES ------*/
+*{
+    box-sizing: border-box;
+}
+body{
+    padding: 0px;
+    margin: 0;
+    font-family: 'Montserrat';
+    /*background-image: url('https://sm.ign.com/t/ign_br/screenshot/a/a-gameplay/a-gameplay-screenshot-of-from-valorants-closed-beta_z548.1080.jpg');*/
+    background-color: rgba(0,0,0,0);
+    background-size: 100%;
+}
+body::after, body::before{
+    padding: 0px;
+}
+.flex{
+    display: flex;
+    padding: 0;
+}
+.map-select-information-container{
+    width: 225px;
+    height: 25px;
+    color: gray;
+    font-size: small;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, var(--map_select_dark) 50%, var(--map_select_light) 100%);
+    margin-right: -25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    clip-path: polygon(0px 0px, calc(100% - 25px) 0px, 100% 25px, 25px 25px);
+}
+.first-map-select{
+    clip-path: polygon(0px 0px, calc(100% - 25px) 0px, 100% 25px, 0px 25px);
+}
+.decider-map-select{
+    clip-path: polygon(0px 0px, 100% 0, 100% 25px, 25px 25px);
+    background: linear-gradient(90deg, var(--map_select_dark) 50%, var(--map_select_light_trans) 100%);
+}
+.map-select-container .information-text{
+    font-weight: 500;
+}
+.map-select-container .map-text{
+    font-weight: 700;
+    color: #fff;
+}
+.team-select-image{
+    aspect-ratio: 1;
+    height: 20px;
+    border-radius: 15px;
+}
+.map-select-container{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}

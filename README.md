@@ -4,6 +4,12 @@
 ### The concept
 We always wanted to have a real tournament overlay for community hosted events. As it seems like Riot only gives access to their "VCT Style" overlay to prominent groups (OfflineTV, AfreecaTV, ...) we tried to replicate the overlay as much as possible in the form of an HTML overlay and a Python App that hot-modifies the html markup in the files. As well as server data fetching should the user host game results and map picks on an offsite server.
 
+### Setup
+- Download or clone the repository in a desired folder
+- Download all dependencies needed for the program to work (fs, express)
+- start the server client with ```node ./server/server.js```
+- Go to ```localhost:3000/pannel``` to access the control panel
+
 ### Functionalites
 This is a comprehensive list of all planned and currently working functionalities that this repository contains.
 

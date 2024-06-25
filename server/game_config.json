@@ -1,0 +1,35 @@
+{
+    "maps": {
+        "1":{
+            "is_current": 0,
+            "team": "",
+            "is_over": 0 
+        },
+        "2":{
+            "is_current": 0,
+            "team": "",
+            "is_over": 0 
+        },
+        "3":{
+            "is_current": 0,
+            "team": "",
+            "is_over": 0 
+        }
+    },
+    "game_state": {
+        "game_stage": "",
+        "switch_sides": false,
+        "team_1": {
+            "abbreviation": "",
+            "icon_link": "",
+            "won_games": 0,
+            "current_score": 0
+        },
+        "team_2": {
+            "abbreviation": "",
+            "icon_link": "",
+            "won_games": 0,
+            "current_score": 0
+        }
+    }
+}
