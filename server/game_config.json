@@ -1,5 +1,6 @@
 {
     "maps": {
+        "is_remote_origin": false,
         "1":{
             "is_current": 0,
             "team": "",
@@ -17,6 +18,7 @@
         }
     },
     "game_state": {
+        "is_remote_origin": false,
         "game_stage": "",
         "switch_sides": false,
         "team_1": {
@@ -31,5 +33,8 @@
             "won_games": 0,
             "current_score": 0
         }
+    },
+    "map_picks": {
+        "is_remote_origin": false
     }
 }

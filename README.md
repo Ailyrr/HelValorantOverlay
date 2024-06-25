@@ -7,8 +7,15 @@ We always wanted to have a real tournament overlay for community hosted events. 
 ### Setup
 - Download or clone the repository in a desired folder
 - Download all dependencies needed for the program to work (fs, express)
+- Modify the ```/server/game_config.json``` file and change the boolean value for ```is_remote_origin``` to  ```true``` or  ```false``` in case you use a custom server origin for your game state components.
 - start the server client with ```node ./server/server.js```
-- Go to ```localhost:3000/pannel``` to access the control panel
+- Go to ```localhost:3000/pannel``` to access the control panel where you can change the map picks and more.
+
+### Adding sources to OBS (Open Broadcast Software)
+- Download OBS if not already done at [this link](https://obsproject.com/)
+- Create your scenes and add a ```Browser Source``` to your scene.
+- In the browser check the ```local file```checkbox.
+- Chose the corresponding .html file for each overlay component you'd like to add to your stream.
 
 ### Functionalites
 This is a comprehensive list of all planned and currently working functionalities that this repository contains.
