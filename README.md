@@ -33,6 +33,8 @@ This is a comprehensive list of all planned and currently working functionalitie
 ### Examples
 ![Map Picks Top Left Bar](./readme_assets/map_picks_bar.png)
 > Used to display which map is currently played and which one is up next. Works with either manual local data modification or with server data fetching.
+![Player Stats](./readme_assets/player_scores.png)
+> Player Scores progress, player healt, ult points, agent, and name are displayed as in the VCT. Updating is not yet working, all of it is static.
 ### References
 ![VCT Overlay Reference](https://preview.redd.it/izxic4tn0cab1.jpg?width=640&crop=smart&auto=webp&s=3400e7a4badb75196a13e87b5eb47d3819577784)
 

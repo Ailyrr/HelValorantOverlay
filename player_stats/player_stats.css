@@ -1,0 +1,192 @@
+:root{
+    --overlay_black: #181818;
+    --overlay_dark: #23232388;
+    --map_select_light_trans: #43434300;
+    --overlay_green: #71edc0;
+    --overlay_trans_green: #397b63b5;
+    --overlay_red: #eb535d;
+    --overlay_trans_red: #913238ad;
+}
+/*------ UTILITY CLASSES ------*/
+*{
+    box-sizing: border-box;
+}
+body{
+    padding: 0px;
+    margin: 0;
+    font-family: 'Montserrat';
+    /*background-image: url('https://sm.ign.com/t/ign_br/screenshot/a/a-gameplay/a-gameplay-screenshot-of-from-valorants-closed-beta_z548.1080.jpg');*/
+    background-color: rgba(0,0,0,0);
+    background-size: 100%;
+}
+body::after, body::before{
+    padding: 0px;
+}
+.flex{
+    display: flex;
+    padding: 0;
+}
+.left-team{
+    left: 10px;
+    bottom: 10px;
+}
+.right-team{
+    right: 10px;
+    bottom: 10px;
+}
+.player-list-red-team{
+    position: absolute;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    width: 360px;
+    --team-color: var(--overlay_red);
+    --team-color-transparent: var(--overlay_trans_red);
+}
+
+.player-list-green-team{
+    position: absolute;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    width: 360px;
+    --team-color: var(--overlay_green);
+    --team-color-transparent: var(--overlay_trans_green);
+}
+
+.player-stat-container{
+    aspect-ratio: 3/1;
+    height: 100px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+}
+.player-status{
+    width: 100%;
+    flex-grow: 1;
+    background-color: var(--overlay_dark);
+}
+.right-team .player-status{
+    flex-direction: row-reverse;
+}
+.right-team .player-status img{
+    transform: scaleX(-1);
+}
+.player-health{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    height: 8px;
+    background-color: var(--overlay_black);
+}
+.right-team .player-health{
+    justify-content: flex-end;
+}
+.player-health .player-health-bar{  
+    height: 100%;
+    background-color: var(--team-color);
+}
+.player-name{
+    background-color: var(--team-color-transparent);
+    height: 36px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.right-team .player-name{
+    flex-direction: row-reverse;
+}
+.player-name .player-name-container{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    max-width: 30%;
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.right-team .player-name-container{
+    text-align: right;
+
+    margin-left: auto;
+    margin-right: 0;
+}
+.player-status{
+    display: flex;
+}
+.player-status img{
+    height: 56px;
+}
+
+.player-name .player-health{
+    font-weight: 800;
+    color: #fff;
+    background-color: none;
+}
+.player-ult-point-container{
+    display: flex;
+    gap: 5px;
+    max-width: 30%;
+    margin-left: auto;
+    margin-right: 0;
+}
+.right-team .player-ult-point-container{
+    margin-left: 0;
+    margin-right: auto;
+}
+.player-ult-point{
+    --side-length: 10px;
+    background-color: var(--overlay_black);
+    height: var(--side-length);
+    width: var(--side-length);
+    clip-path: polygon(0px calc(50%), calc(50%) 0px, calc(100%) calc(50%), calc(50%) calc(100%));
+}
+.full-point{
+    background-color: #fff;
+}
+.player-name .player-health-count{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 0;
+}
+.right-team .player-health-count{
+    margin-left: 0;
+    margin-right: auto;
+}
+.player-name .player-health-count .player-health-count-number{
+    color: #fff;
+    font-weight: 800;
+}
+.player-shield-count{
+    background-color: var(--overlay_black);
+    color: #fff;
+    font-size: small;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    --side-length: 25px;
+    height: var(--side-length);
+    width: var(--side-length);
+    clip-path: polygon(calc(50%) 0px , calc(100%) calc(15%) , calc(100%) calc(65%), calc(50%) calc(100%), 0px calc(65%), 0px calc(15%));
+}
+.player-shield-outline{
+    background-color: var(--team-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    --side-length: 29px;
+    height: var(--side-length);
+    width: var(--side-length);
+    clip-path: polygon(calc(50%) 0px , calc(100%) calc(15%) , calc(100%) calc(65%), calc(50%) calc(100%), 0px calc(65%), 0px calc(15%));
+}
+.shield-down{
+    background-color: transparent;
+}
