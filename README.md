@@ -34,9 +34,12 @@ This is a comprehensive list of all planned and currently working functionalitie
 ![Map Picks Top Left Bar](./readme_assets/map_picks_bar.png)
 > Used to display which map is currently played and which one is up next. Works with either manual local data modification or with server data fetching.
 
-![Player Stats](./readme_assets/player_scores.png)
-> Player Scores progress, player healt, ult points, agent, and name are displayed as in the VCT. Updating is not yet working, all of it is static.
+![Player Stats](./readme_assets/finished_player_stats.png)
+> Player Scores progress, player healt, ult points, agent, and name are displayed as in the VCT. The overlay updates every second by getting information from the main application server. Right now editing the json file live also updates the overlay.
 ### References
 ![VCT Overlay Reference](https://preview.redd.it/izxic4tn0cab1.jpg?width=640&crop=smart&auto=webp&s=3400e7a4badb75196a13e87b5eb47d3819577784)
+> VCT Overlay from which the overlay is extremely inspired (made to look almost identical)
 
+[Valorant Fandom](https://valorant.fandom.com/wiki/VALORANT_Wiki)
+> All assets that originate from inside the game are taken from there. (Agent icons, gun icons, game icons, etc...)
 ### Thanks

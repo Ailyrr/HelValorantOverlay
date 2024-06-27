@@ -2,10 +2,9 @@
   "name": "helvetica_valorant_overlay_controllers",
   "version": "1.0.0",
   "description": "> This is made by the community and is not affiliated with Riot Games and/or VALORANT.",
-  "main": "./server/server.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./server/server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Cornell Baumann",
   "license": "ISC",

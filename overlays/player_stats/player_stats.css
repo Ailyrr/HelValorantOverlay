@@ -27,12 +27,12 @@ body::after, body::before{
     padding: 0;
 }
 .left-team{
-    left: 10px;
-    bottom: 10px;
+    left: 20px;
+    bottom: 20px;
 }
 .right-team{
-    right: 10px;
-    bottom: 10px;
+    right: 20px;
+    bottom: 20px;
 }
 .player-list-red-team{
     position: absolute;
@@ -55,6 +55,7 @@ body::after, body::before{
 }
 
 .player-stat-container{
+    position: relative;
     aspect-ratio: 3/1;
     height: 100px;
     background-color: transparent;
@@ -65,11 +66,38 @@ body::after, body::before{
     width: 100%;
     flex-grow: 1;
     background-color: var(--overlay_dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.player-status .player-weapon{
+    height: 28px;
+    transform: scaleX(-1);
+}
+.player-status .player-credits{
+    margin-left: auto;
+    margin-right: 10px;
+    color: #fff;
+    display: flex;
+    gap: 4px;
+    font-weight: 700;
+    align-items: center;
+}
+.right-team .player-status .player-credits{
+    margin-left: 10px;
+    margin-right: auto;
+    flex-direction: row-reverse;
+}
+.player-status .player-credits img{
+    height: 12px;
+}
+.right-team .player-status .player-weapon{
+    transform: scaleX(1);
 }
 .right-team .player-status{
     flex-direction: row-reverse;
 }
-.right-team .player-status img{
+.right-team .player-status .player-agent{
     transform: scaleX(-1);
 }
 .player-health{
@@ -172,6 +200,7 @@ body::after, body::before{
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-bottom: 3px;
     --side-length: 25px;
     height: var(--side-length);
     width: var(--side-length);
@@ -189,4 +218,31 @@ body::after, body::before{
 }
 .shield-down{
     background-color: transparent;
+}
+
+
+.has-spike-indicator{
+    position: absolute;
+    background-color: #fff;
+    height: 30px;
+    width: 30px;
+    border-radius: 40000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: -15px;
+    top: 13px;
+    z-index: 9999;
+    opacity: 0;
+}
+.has-spike{
+    opacity: 1;
+}
+.has-spike-indicator img{
+    height: 55%;
+    filter:invert();
+}
+.right-team .has-spike-indicator{
+    right: -15px;
+    left: unset;
 }
