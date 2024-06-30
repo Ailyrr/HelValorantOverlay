@@ -6,15 +6,15 @@ async function fetch_player_status_information(){
         console.log(json);
         //create divs and set their classes
         let team_1_container = document.createElement('div');
-        team_1_container.classList.add('player-list-red-team');
+        team_1_container.classList.add('right-team');
         let team_2_container = document.createElement('div');
-        team_2_container.classList.add('player-list-green-team');
-        if(json.switch_teams){
-            team_1_container.classList.add('left-team');
-            team_2_container.classList.add('right-team');
+        team_2_container.classList.add('left-team');
+        if(!json.switch_teams){
+            team_1_container.classList.add('player-list-red-team');
+            team_2_container.classList.add('player-list-green-team');
         } else {
-            team_1_container.classList.add('right-team');
-            team_2_container.classList.add('left-team');
+            team_1_container.classList.add('player-list-green-team');
+            team_2_container.classList.add('player-list-red-team');
         }
         for(let i = 0; i<5;i++){
             let ult_points = ``

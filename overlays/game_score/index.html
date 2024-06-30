@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Score</title>
+    <link rel="stylesheet" href="./game_score.css">
+    <script src="./game_score.js"></script>
+</head>
+<body>
+    <div class="team-container left-team green-team">
+        <div class="team-information-container">
+            <img class="team-icon" src="https://cdn.sanity.io/images/5gii1snx/production/c32c2cb848fd3338ff23a590ec5c0e052b080f27-1000x1000.png" alt="">
+            <span class="team-name-and-seed">
+                <span class="name">FNC</span>
+                <span class="seed">#2 Seed</span>
+            </span>
+        </div>
+        <div class="color-separator-bar"></div>
+        <div class="score-holder">
+            <span class="score">15</span>
+        </div>
+    </div>
+    <div class="central-game-timer">
+        <span class="round-counter">
+            Round 3
+        </span>
+        <span class="timer">1:03</span>
+    </div>
+    <div class="spike-container">
+        <div style="clip-path: polygon(0px calc(50%), calc(100%) 0px, calc(100%) calc(100%));" class="attack-indicator"></div>
+        <img class="spike-image" src="../visual_assets/game_icons/spike.webp" alt="">
+        <div style="clip-path: polygon(0px 0px, calc(100%) calc(50%), 0px calc(100%));" class="attack-indicator"></div>
+    </div>
+    <div class="maps-won-container">
+        <div style="display: flex; gap: 8px;">
+            <div class="map-won-point full-point"></div>
+            <div class="map-won-point"></div>
+        </div>
+        <div style="display: flex; gap: 8px;">
+            <div class="map-won-point"></div>
+            <div class="map-won-point"></div>
+        </div>
+    </div>
+    <div class="team-container right-team red-team">
+        <div class="team-information-container">
+            <img class="team-icon" src="https://helvetica-esport.ch/static/drive/T_6627f0da79697Zjacm0ubMwqVtPqNuddX/EhndBamKoC9N3wXyd0BJ.png" alt="">
+            <span class="team-name-and-seed">
+                <span class="name">HLV</span>
+                <span class="seed">#1 Seed</span>
+            </span>
+        </div>
+        <div class="color-separator-bar"></div>
+        <div class="score-holder">
+            <span class="score">13</span>
+        </div>
+    </div>
+</body>
+</html>

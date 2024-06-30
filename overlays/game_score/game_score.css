@@ -1,0 +1,186 @@
+:root{
+    --overlay_black: #181818;
+    --overlay_dark: #232323cb;
+    --map_select_light_trans: #43434300;
+    --overlay_green: #71edc0;
+    --overlay_trans_green: #397b63b5;
+    --overlay_red: #eb535d;
+    --overlay_trans_red: #913238ad;
+}
+/*------ UTILITY CLASSES ------*/
+*{
+    box-sizing: border-box;
+}
+body{
+    padding: 0px;
+    margin: 0;
+    font-family: 'Montserrat';
+    /*background-image: url('https://sm.ign.com/t/ign_br/screenshot/a/a-gameplay/a-gameplay-screenshot-of-from-valorants-closed-beta_z548.1080.jpg');*/
+    background-color: rgb(0, 0, 0);
+    background-size: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+}
+body::after, body::before{
+    padding: 0px;
+}
+.flex{
+    display: flex;
+    padding: 0;
+}
+.central-game-timer{
+    position: relative;
+}
+.red-team{
+    --color: var(--overlay_red);
+    --transparent: var(--overlay_trans_red)
+}
+.green-team{
+    --color: var(--overlay_green);
+    --transparent: var(--overlay_trans_green);
+}
+.team-container{
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+    height: 60px;
+    width: 230px;
+    clip-path: polygon(20px 0px, calc(100% - 20px) 0, calc(100%) 30px, calc(100% - 20px) 60px, 20px 60px, 0px 30px);
+}
+.team-container .team-information-container{
+    background-color: var(--overlay_dark);
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 0px 20px;
+}
+.team-container .team-information-container .team-icon{
+    --side-length: 35px;
+    border-radius: 9999px;
+    height: var(--side-length);
+    width: var(--side-length);
+}
+.team-container .team-information-container .team-name-and-seed{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+.team-container .team-information-container .team-name-and-seed .name{
+    color: #fff;
+    font-size: large;
+    font-weight: 700;
+    flex-grow: 1;
+}
+.team-container .team-information-container .team-name-and-seed .seed{
+    color: darkgray;
+    font-weight: 500;
+    font-size: small;
+}
+.team-container .color-separator-bar{
+    background-color: var(--color);
+    width: 4px;
+    height: 100%;
+}
+.team-container .score-holder{
+    background-color: var(--transparent);
+    height: 100%;
+    width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 15px;
+    padding-left: unset;
+}
+.team-container .score-holder .score{
+    font-weight: 800;
+    color: #fff;
+    font-size: xx-large;
+}
+.right-team .team-information-container{
+    flex-direction: row-reverse;
+}
+.right-team{
+    flex-direction: row-reverse;
+}
+.right-team .score-holder{
+    padding-right: unset;
+    padding-left: 15px;
+}
+
+.maps-won-container{
+    position: absolute;
+    height: 15px;
+    width: 420px;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+}
+
+.map-won-point{
+    --side-length: 13px;
+    background-color: var(--overlay_green);
+    height: var(--side-length);
+    width: var(--side-length);
+    clip-path: polygon(0px calc(50%), calc(50%) 0px, calc(100%) calc(50%), calc(50%) calc(100%));
+    z-index: 99999;
+    background-color: #75757577;
+}
+.full-point{
+    background-color: #dcdcdc;
+}
+
+
+.central-game-timer{
+    background-color: var(--overlay_dark);
+    width: 220px;
+    height: 65px;
+    box-sizing: border-box;
+    padding: 5px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+    clip-path: polygon(0px 0px, calc(100%) 0px, calc(100% - 20px) calc(100%), 20px calc(100%));
+    position: relative;
+}
+.central-game-timer .round-counter{
+    color: lightgray;
+    font-weight: 600;
+    font-size: small;
+}
+.central-game-timer .timer{
+    color: #fff;
+    font-size: xx-large;
+    font-weight: 800;
+}
+.spike-container .spike-image{
+    height: 45px;
+    width: 45px;
+}
+.spike-container{
+    position: absolute;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    top: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.attack-indicator{
+    --side-length: 10px;
+    height: var(--side-length);
+    width: var(--side-length);
+    background-color: #fff;
+}

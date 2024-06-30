@@ -73,13 +73,13 @@
         "player_0": {
             "username": "Ailyrr",
             "agent": "jett",
-            "health": 74,
-            "shield": 38,
+            "health": 50,
+            "shield": 0,
             "ult_points_needed": 7,
-            "ult_points_gained": 2,
-            "weapon": "operator",
-            "credits": 2798,
-            "has_spike": false
+            "ult_points_gained": 7,
+            "weapon": "vandal",
+            "credits": 9000,
+            "has_spike": true
         },
         "player_1": {
             "username": "EmpereurAugustus",
@@ -95,8 +95,8 @@
         "player_2": {
             "username": "Mamcko",
             "agent": "brimstone",
-            "health": 91,
-            "shield": 30,
+            "health": 78,
+            "shield": 0,
             "ult_points_needed": 7,
             "ult_points_gained": 3,
             "weapon": "vandal",
@@ -111,12 +111,12 @@
             "ult_points_needed": 7,
             "ult_points_gained": 6,
             "weapon": "phantom",
-            "credits": 7360,
-            "has_spike": true
+            "credits": 3200,
+            "has_spike": false
         },
         "player_4": {
             "username": "Bjorhun",
-            "agent": "skye",
+            "agent": "iso",
             "health": 11,
             "shield": 0,
             "ult_points_needed": 7,
