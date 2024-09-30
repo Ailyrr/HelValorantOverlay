@@ -1,0 +1,12 @@
+{
+    "teams": ["HLV", "FNC"],
+    "picks": [
+        ["lotus", "ban", 1],
+        ["ascent", "ban", 0],
+        ["breeze", "defense", 1],
+        ["icebox", "defense", 0],
+        ["sunset", "ban", 1],
+        ["split", "ban", 0],
+        ["haven", "attack", 1]
+    ]
+}

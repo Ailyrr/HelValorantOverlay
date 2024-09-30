@@ -1,56 +1,4 @@
 {
-    "maps": {
-        "is_remote_origin": false,
-        "0":{
-            "action": "ban",
-            "is_current": 0,
-            "team": "",
-            "is_over": 0,
-            "end_score": "" 
-        },
-        "1":{
-            "action": "ban",
-            "is_current": 0,
-            "team": "",
-            "is_over": 0,
-            "end_score": ""
-        },
-        "2":{
-            "action": "ban",
-            "is_current": 0,
-            "team": "",
-            "is_over": 0,
-            "end_score": ""
-        },
-        "3":{
-            "action": "ban",
-            "is_current": 0,
-            "team": "",
-            "is_over": 0,
-            "end_score": ""
-        },
-        "4":{
-            "action": "ban",
-            "is_current": 0,
-            "team": "",
-            "is_over": 0,
-            "end_score": ""
-        },
-        "5":{
-            "action": "ban",
-            "is_current": 0,
-            "team": "",
-            "is_over": 0,
-            "end_score": ""
-        },
-        "6":{
-            "action": "ban",
-            "is_current": 0,
-            "team": "",
-            "is_over": 0,
-            "end_score": ""
-        }
-    },
     "game_state": {
         "is_remote_origin": false,
         "game_stage": "",
@@ -73,13 +21,13 @@
         "player_0": {
             "username": "Ailyrr",
             "agent": "jett",
-            "health": 50,
+            "health": 23,
             "shield": 0,
             "ult_points_needed": 7,
-            "ult_points_gained": 7,
+            "ult_points_gained": 2,
             "weapon": "vandal",
             "credits": 9000,
-            "has_spike": true
+            "has_spike": false
         },
         "player_1": {
             "username": "EmpereurAugustus",
@@ -90,7 +38,7 @@
             "ult_points_gained": 1,
             "weapon": "guardian",
             "credits": 3921,
-            "has_spike": false
+            "has_spike": true
         },
         "player_2": {
             "username": "Mamcko",

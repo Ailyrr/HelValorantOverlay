@@ -4,6 +4,10 @@ const port = 3000;
 
 //Add all styling files to the application
 app.use(express.static('overlays'));
+// Middleware to parse JSON body
+app.use(express.json());
+// Middleware to parse URL-encoded body
+app.use(express.urlencoded({ extended: true }));
 
 // Import routes javascript file
 const routes = require('./routes/routes');

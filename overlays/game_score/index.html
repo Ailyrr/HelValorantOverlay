@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Score</title>
     <link rel="stylesheet" href="./game_score.css">
-    <script src="./game_score.js"></script>
+    <script src="./game_score.js" defer></script>
 </head>
 <body>
     <div class="team-container left-team green-team">
@@ -25,7 +25,7 @@
         <span class="round-counter">
             Round 3
         </span>
-        <span class="timer">1:03</span>
+        <span class="timer" id="timer"><span style="color: white;">00:00</span></span>
     </div>
     <div class="spike-container">
         <div style="clip-path: polygon(0px calc(50%), calc(100%) 0px, calc(100%) calc(100%));" class="attack-indicator"></div>

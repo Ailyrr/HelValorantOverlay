@@ -4,41 +4,49 @@
 
 ![Map Picks Top Left Bar](./readme_assets/AppFullIcon.png)
 ### Warning
-This repo is under construction and is not complete yet. For now only the visual assets are working but the main server and data recognition is not built yet.
+```diff
+- This Repository is under construction and is not working yet ! Developpment is underway but slowed drastically by my current service at the swiss army. Only visualy assets are working right now but they are STATIC, meaning there is currently no way to get them to update live from a game
+```
+
+### Content
+> [Introduction](#the-concept)
+> [App Setup](#setup-host-server)
+> [Client App Setup](#setup-client-app)
+> [Adding Scenes to OBS](#adding-sources-to-obs-open-broadcast-software)
+> [FAQ](#faq)
 
 ### The concept
 We always wanted to have a real tournament overlay for community hosted events. As it seems like Riot only gives access to their "VCT Style" overlay to prominent groups (OfflineTV, AfreecaTV, ...) we tried to replicate the overlay as much as possible in the form of an HTML overlay and a user downloadable Overwolf app that sends the required data to the server in order to be shown on screen.
+We aim to create the best possible overlay for smaller communities that would like to host VALORANT events. The overlay should resemble the VCT overlay as much as possible without needing tournament organizers to be registered and partnered with Riot Games.
+The main app works as a central server hosting ```.html``` files such as ```.json``` files. The overlays refresh every second by querying the files on the server. At the same time, each player in the current game will be sending their game state through the ```Overwolf App``` every second. The data is the parsed and stored in the files on the server thus updating the overlay on it's next update.
 
 ### Setup Host Server
 - Download or clone the repository in a desired folder
 - Download all dependencies needed for the program to work (fs, express)
 - Make sure that the place where you will run the application has an open endpoint accessible from outside your local network.
 - start the server client with ```node .```
-- Go to either, ```/pannel``` to access the control pannel where you can change the map picks and more or go to ```/``` to see all possible endpoints for overlays and the possibility to copy them for adding in OBS. (Note that you'll need to update the ```admin_password``` field in the ```game_config.json``` to access the pannel.)
+- Go ```/``` to access a greeting page with all the possible endpoints for overlays and for admin panels. Note that you'll need to update the admin password in the ```app_config.json```file as the default password is ```password```. The admin panel allows you to manage everything in the overlay.
 
-### Setup Client Apps
-- Each user in your VALORANT game must have downloaded Overwolf and the coresponding HelveticaOverlay app.
-- On startup, the app will ask the user for a 'game_token' and an 'endpoint'. The token is given by the tournament organiser and the endpoint will be what you've defined the hosts entrypoint to be, for example ```  {yourcustomdomain.com}//```
-- The user's client will the connect to the host and start transmitting data.
+### Setup Client App
+- Each user in your VALORANT game must have downloaded Overwolf and the coresponding HelValorant Overlay app.
+- On startup, the app will ask the user for a 'game_token' and an 'endpoint'. The token is given by the tournament organiser and can be generated in the admin panel. The endpoint will be what you've defined the hosts entrypoint to be, for example ```  {yourcustomdomain.com}/```
+- The user's client will then connect to the host and start transmitting data as soon as the valorant game starts.
+- The admin can then invalidate tokens after the game session is over thus terminating the transmission of data to the server of non-players.
 
 ### Adding sources to OBS (Open Broadcast Software)
 - Download OBS if not already done at [this link](https://obsproject.com/)
 - Create your scenes and add a ```Browser Source``` to your scene.
 - In the browser add the different pages available to you. For example ```/game_score``` or ```map_picks```. A full list of all visual assets can be found at ```/```
-- Chose the corresponding page for each overlay component you'd like to add to your stream. (note that pages with moving assets on it like timeout timers are set to restart their animation on reload, thus you'll need to check the 'refresh browser on scene active' for your scenes.)
+- Choose the corresponding page for each overlay component you'd like to add to your stream. (Don't forget to set the source's resolution to be 1920x1080 for best results)
 
-### Functionalites
-This is a comprehensive list of all planned and currently working functionalities that this repository contains.
+### FAQ
+- My players can't access the server (Endpoint Closed Error)
+> Make sure that the server on which you are hosting the overlay app is accessible from the internet and not just hosted on you local network with a closed port. Should you host the app on ```localhost:3000``` make sure to open the port and forward said port to your machine in your ISP settings.
+- Why use Overwolf?
+> Overwolf allows a quick access to a VALORANT API. As the real Riot API is not easy to access, it is simple to have each player install an app from the overwolf store directly and use this as a source. In addition the Riot API would not allow you to get every necessary piece of data needed for the overlay as player health, shield, weapon and other are not available for the enemy team.
+- I don't want to install overwolf to use the app
+> Though luck it only works with overwolf.
 
-##### Local function (no need for server data)
-- Custom Scoreboard Styling. (WIP)
-- Custom map picks on top left of screen (Local done, server WIP)
-- Custom Halftime and Timeout timers. (Done)
-##### Server dependent functions
-- Map pick overlay (Done)
-- Map pick selector, admin only (WIP)
-##### Misc functions
-- Streamdeck compatibility (WIP)
 
 ### Examples
 ![Map Picks Top Left Bar](./readme_assets/map_picks_bar.png)
@@ -56,4 +64,3 @@ This is a comprehensive list of all planned and currently working functionalitie
 
 [Valorant Fandom](https://valorant.fandom.com/wiki/VALORANT_Wiki)
 > All assets that originate from inside the game are taken from there. (Agent icons, gun icons, game icons, etc...)
-### Thanks

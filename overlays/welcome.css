@@ -1,0 +1,65 @@
+:root{
+    --background-color: #1a1a1a;
+    --light-background: #2d2d2d;
+    --color-splash-1: #b164f7;
+    --color-splash-2: #2EAAFF;
+}
+
+body{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    height: 100svh;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+}
+.wrapper{
+    margin-top: 100px;
+    width: 40%;
+    max-width: 500px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.wrapper img{
+    width: 30%;
+    max-width: 150px;
+}
+.wrapper h1{
+    color: #fff;
+    padding: unset;
+    margin: unset;
+}
+.wrapper h4{
+    margin: unset;
+    color: var(--color-splash-2);
+}
+h5{
+    color: lightgray;
+}
+.app-nav{
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--light-background);
+    display: flex;
+}
+.app-nav ul{
+    flex-grow: 1;
+    list-style-type: none;
+}
+.app-nav ul li{
+    color: var(--color-splash-1);
+    font-weight: 900;
+}
+.app-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: large;
+}
+.app-nav ul li a:hover{
+    text-decoration: underline;
+}

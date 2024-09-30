@@ -1,0 +1,87 @@
+:root{
+    --map_select_dark: #232323de;
+    --map_select_light: #434343de;
+    --map_select_light_trans: #43434300;
+    --overlay_green: #84f1cf;
+    --overlay_trans_green: #366c61;
+    --overlay_red: #bf5460;
+    --overlay_trans_red: #6a323b;
+}
+/*------ UTILITY CLASSES ------*/
+*{
+    box-sizing: border-box;
+}
+body{
+    padding: 0px;
+    margin: 0;
+    font-family: 'Montserrat';
+    /*background-image: url('https://sm.ign.com/t/ign_br/screenshot/a/a-gameplay/a-gameplay-screenshot-of-from-valorants-closed-beta_z548.1080.jpg');*/
+    background-color: rgba(0,0,0,1);
+    background-size: 100%;
+}
+body::after, body::before{
+    padding: 0px;
+}
+/*------------*/
+
+#timer{
+    color: #fff;
+    font-weight: 600;
+    font-size: 50px;
+    font-family: 'Ethnocentric';
+}
+.timeout-container{
+    background-color: var(--map_select_dark);
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+    box-sizing: border-box;
+    padding: 20px;
+    height: 120px;
+    width: 640px;
+    display: flex;
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    transform: translateX(-650px);
+    animation: slideIn 400ms forwards;
+}
+@keyframes slideIn {
+    100%{
+        transform: translateX(0px);
+    }
+}
+.timeout-timer-container{
+    display: flex;
+    flex-direction: column;
+}
+.timeout-team-icon{
+    margin-right: 0;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.team-icons{
+    aspect-ratio: 1;
+    height:70px;
+    width: 70px;
+    background-color: var(--map_select_light);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.team-icons .score{
+    color: #fff;
+    font-family: 'Source Code Pro';
+    font-weight: 600;
+    font-size: 40px;
+}
+.team-icons .team-abbr{
+    color: #fff;
+}
+.timeout-reason{
+    color: var(--overlay_green);
+    font-size: 20px;
+}
