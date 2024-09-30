@@ -2,7 +2,7 @@
 > This is made by the community and is not affiliated with Riot Games and/or VALORANT.
 
 
-![App Icon](./overlays/visual_assets/HelValorantOverlay_Icon.png)
+![Map Picks Top Left Bar](./readme_assets/HelValorantOverlay_Icon.png)
 ### Warning
 This repo is under construction and is not complete yet. For now only the visual assets are working but the main server and data recognition is not built yet.
 
