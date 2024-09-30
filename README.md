@@ -1,25 +1,31 @@
 # A Community made VALORANT Tournament Overlay
 > This is made by the community and is not affiliated with Riot Games and/or VALORANT.
 
+
+![App Icon](./overlays/visual_assets/HelValorantOverlay_Icon.png)
 ### Warning
 This repo is under construction and is not complete yet. For now only the visual assets are working but the main server and data recognition is not built yet.
 
 ### The concept
-We always wanted to have a real tournament overlay for community hosted events. As it seems like Riot only gives access to their "VCT Style" overlay to prominent groups (OfflineTV, AfreecaTV, ...) we tried to replicate the overlay as much as possible in the form of an HTML overlay and a Python App that hot-modifies the html markup in the files. As well as server data fetching should the user host game results and map picks on an offsite server.
+We always wanted to have a real tournament overlay for community hosted events. As it seems like Riot only gives access to their "VCT Style" overlay to prominent groups (OfflineTV, AfreecaTV, ...) we tried to replicate the overlay as much as possible in the form of an HTML overlay and a user downloadable Overwolf app that sends the required data to the server in order to be shown on screen.
 
-### Setup
+### Setup Host Server
 - Download or clone the repository in a desired folder
 - Download all dependencies needed for the program to work (fs, express)
-- Modify the ```/game_config.json``` file and change the boolean value for ```is_remote_origin``` to  ```true``` or  ```false``` in case you use a custom server origin for your game state components. (Note that you need to make sure that the output of your desired endpoint gives out json values with the same structure as in the game_config file)
+- Make sure that the place where you will run the application has an open endpoint accessible from outside your local network.
 - start the server client with ```node .```
-- Go to either, ```localhost:3000/pannel``` to access the control panel where you can change the map picks and more or go to ```localhost:3000/``` to see all possible endpoints for overlays and the possibility to copy them for adding in OBS.
-- Once the local server is running, start the capture app by navigating to ```./capture_app/main.py``` and executing that. This app will need to be connected to an open VALORANT instance and be capturing the viewpoint of an observer. This account should be an inactive observer, meaning that the program will actively change the spectated player each 500ms and always keep the TAB open in order to capture the relevant information. Keep this app running as long as your match is ongoing. The app constantly updates the values in the JSON file to update the overlay in real time, if you close this app the overlay will become unresponsive.
+- Go to either, ```/pannel``` to access the control pannel where you can change the map picks and more or go to ```/``` to see all possible endpoints for overlays and the possibility to copy them for adding in OBS. (Note that you'll need to update the ```admin_password``` field in the ```game_config.json``` to access the pannel.)
+
+### Setup Client Apps
+- Each user in your VALORANT game must have downloaded Overwolf and the coresponding HelveticaOverlay app.
+- On startup, the app will ask the user for a 'game_token' and an 'endpoint'. The token is given by the tournament organiser and the endpoint will be what you've defined the hosts entrypoint to be, for example ```  {yourcustomdomain.com}//```
+- The user's client will the connect to the host and start transmitting data.
 
 ### Adding sources to OBS (Open Broadcast Software)
 - Download OBS if not already done at [this link](https://obsproject.com/)
 - Create your scenes and add a ```Browser Source``` to your scene.
-- In the browser check the ```local file```checkbox.
-- Chose the corresponding .html file for each overlay component you'd like to add to your stream.
+- In the browser add the different pages available to you. For example ```/game_score``` or ```map_picks```. A full list of all visual assets can be found at ```/```
+- Chose the corresponding page for each overlay component you'd like to add to your stream. (note that pages with moving assets on it like timeout timers are set to restart their animation on reload, thus you'll need to check the 'refresh browser on scene active' for your scenes.)
 
 ### Functionalites
 This is a comprehensive list of all planned and currently working functionalities that this repository contains.
