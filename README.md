@@ -9,11 +9,11 @@
 ```
 
 ### Content
-> [Introduction](#the-concept)
-> [App Setup](#setup-host-server)
-> [Client App Setup](#setup-client-app)
-> [Adding Scenes to OBS](#adding-sources-to-obs-open-broadcast-software)
-> [FAQ](#faq)
+>[Introduction](#the-concept)\
+>[App Setup](#setup-host-server)\
+>[Client App Setup](#setup-client-app)\
+>[Adding Scenes to OBS](#adding-sources-to-obs-open-broadcast-software)\
+>[FAQ](./FAQ.md)\
 
 ### The concept
 We always wanted to have a real tournament overlay for community hosted events. As it seems like Riot only gives access to their "VCT Style" overlay to prominent groups (OfflineTV, AfreecaTV, ...) we tried to replicate the overlay as much as possible in the form of an HTML overlay and a user downloadable Overwolf app that sends the required data to the server in order to be shown on screen.
@@ -38,14 +38,6 @@ The main app works as a central server hosting ```.html``` files such as ```.jso
 - Create your scenes and add a ```Browser Source``` to your scene.
 - In the browser add the different pages available to you. For example ```/game_score``` or ```map_picks```. A full list of all visual assets can be found at ```/```
 - Choose the corresponding page for each overlay component you'd like to add to your stream. (Don't forget to set the source's resolution to be 1920x1080 for best results)
-
-### FAQ
-- My players can't access the server (Endpoint Closed Error)
-> Make sure that the server on which you are hosting the overlay app is accessible from the internet and not just hosted on you local network with a closed port. Should you host the app on ```localhost:3000``` make sure to open the port and forward said port to your machine in your ISP settings.
-- Why use Overwolf?
-> Overwolf allows a quick access to a VALORANT API. As the real Riot API is not easy to access, it is simple to have each player install an app from the overwolf store directly and use this as a source. In addition the Riot API would not allow you to get every necessary piece of data needed for the overlay as player health, shield, weapon and other are not available for the enemy team.
-- I don't want to install overwolf to use the app
-> Though luck it only works with overwolf.
 
 
 ### Examples
