@@ -1,31 +1,25 @@
-/*
-    get map picks API call returns a json as such
-    {
-        "teams": ["HLV", "FNC"],
-        "picks": [
-            ["lotus", "ban", 1],
-            ["ascent", "ban", 0],
-            ["breeze", "defense", 1],
-            ["icebox", "defense", 0],
-            ["sunset", "ban", 1],
-            ["split", "ban", 0],
-            ["haven", "attack", 1]
-        ]
-    }   
-*/
-
+async function fetch_data(route){
+    const map_picks_query = await fetch(route);
+    const map_picks_json = await map_picks_query.json();
+    if(map_picks_json){
+        console.log(map_picks_json)
+        return map_picks_json
+    } else {
+        return false
+    }
+}
 class mapPickInterface {
     constructor(json) {
-        this.amount_of_maps = 7, //fixed to a maximum of 7 maps as in VCT (changing this may required changes to the code)
-        this.teams = json.teams,
-        this.picks = json.picks
+        this.amount_of_maps = json.picks.length; //fixed to a maximum of 7 maps as in VCT (changing this may required changes to the code)
+        this.teams = json.teams;
+        this.picks = json.picks;
     }
     //Creates the empty map pick cards with none of the picks shown
     createBasicLayout() {
         let return_html_string = document.createElement('div');
         return_html_string.classList.add('map-pick-container');
         for(let i=0; i<this.amount_of_maps;i++){
-            if(i == 6){
+            if(i == this.amount_of_maps - 1){
                 return_html_string.innerHTML += `<div class="map-pick-card card-no-${i}" style="animation-delay: ${100 + i*100}ms;">
                     <div class="map-pick-side">
                         DECIDER
@@ -131,21 +125,15 @@ class mapPickInterface {
 Create server fetching to gather data from server
 */
 
-const interface = new mapPickInterface({
-    "teams": ["HLV", "PRX"],
-    "picks": [
-        ["lotus", "ban", 1],
-        ["abyss", "ban", 0],
-        ["breeze", "defense", 1],
-        ["icebox", "defense", 0],
-        ["sunset", "ban", 1],
-        ["split", "ban", 0],
-        ["haven", "attack", 0]
-    ]
-})//Data is static here, need to fetch from server
+async function init() {
+    const map_picks_json = await fetch_data('../get_map_picks');
+    const interface = new mapPickInterface(map_picks_json);
 
-const adding_div = document.getElementById('map-pick-adding-div');
-adding_div.appendChild(interface.createBasicLayout())
-setTimeout(() => {
-    interface.startAutoUpdateAtIndex(0)
-}, 3000)
+    const adding_div = document.getElementById('map-pick-adding-div');
+    adding_div.appendChild(interface.createBasicLayout());
+    setTimeout(() => {
+        interface.startAutoUpdateAtIndex(0);
+    }, 3000);
+}
+
+init()

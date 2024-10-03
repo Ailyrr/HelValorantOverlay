@@ -13,7 +13,7 @@
 >[App Setup](#setup-host-server)\
 >[Client App Setup](#setup-client-app)\
 >[Adding Scenes to OBS](#adding-sources-to-obs-open-broadcast-software)\
->[FAQ](./FAQ.md)\
+>[FAQ](./FAQ.md)
 
 ### The concept
 We always wanted to have a real tournament overlay for community hosted events. As it seems like Riot only gives access to their "VCT Style" overlay to prominent groups (OfflineTV, AfreecaTV, ...) we tried to replicate the overlay as much as possible in the form of an HTML overlay and a user downloadable Overwolf app that sends the required data to the server in order to be shown on screen.

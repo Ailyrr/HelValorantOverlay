@@ -54,6 +54,9 @@ h5{
     color: var(--color-splash-1);
     font-weight: 900;
 }
+a{
+    color: var(--color-splash-2);
+}
 .app-nav ul li a {
     color: #fff;
     text-decoration: none;

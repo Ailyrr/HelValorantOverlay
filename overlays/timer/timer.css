@@ -43,11 +43,15 @@ body::after, body::before{
     bottom: 100px;
     left: 0;
     transform: translateX(-650px);
-    animation: slideIn 400ms forwards;
 }
 @keyframes slideIn {
     100%{
         transform: translateX(0px);
+    }
+}
+@keyframes slideOut {
+    100%{
+        transform: translateX(-650px);
     }
 }
 .timeout-timer-container{
