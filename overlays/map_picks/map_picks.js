@@ -87,7 +87,7 @@ class mapPickInterface {
             let cover = document.createElement('div');
             cover.classList.add('map-picked-by-side-cover');
             let text = document.createElement('span');
-            text.innerText = `${this.teams[this.picks[index][2]]} PICKS ${(this.picks[index][1] == 'attack') ? "ATTACK" : "DEFENSE"}`
+            text.innerText = `${this.teams[index >= 6 ? index%2 : (index + 1)%2]} PICKS ${(this.picks[index][1] == 'attack') ? "ATTACK" : "DEFENSE"}`
             map_action_card.appendChild(cover);
             map_action_card.appendChild(text);
             target_card.appendChild(map_action_card);

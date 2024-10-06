@@ -127,13 +127,78 @@ router.get('/reset_timer', upload.none(), (req, res) => {
         }
     });
 })
-router.get('/update_player_stats', (res, req) => {
-
-})
 
 /*
-ADMIN ROUTES
+-------------------------
+Externally used endpoints
+-------------------------
 */
+
+/*
+Update player states
+Recieve json to update each player's game information, health, weapon, credits, shield, etc...
+*/
+router.post('/update_player_state', (req, res) => {
+    const playerStats = req.body;
+    console.log('Player Stats recieved: ', playerStats);
+
+    res.json({ message: 'Stats Recieved' });
+});
+/*
+Update Game state
+Send json information to update the game state information, round number, round won/lost, spike planted/defused, etc...
+*/
+router.post('/update_game_state', upload.none(), (req, res) => {
+
+})
+/*
+------------
+ADMIN ROUTES
+------------
+*/
+
+//Update map pick at some 
+router.post('/set_map_picks', upload.none(), (req, res) => {
+    const { index, map, action } = req.body;
+    const path_to_map_picks = path.join(__dirname, '../map_picks.json');
+    fs.readFile(path_to_map_picks, 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading the file:', err);
+            return res.status(400).send({
+                "status": false,
+                "message": "Failed to read the json file"
+            });
+        }
+    
+        try {
+            // Parse the JSON data
+            let jsonData = JSON.parse(data);
+            //Edit the json data
+            jsonData['picks'][index] = [map, action]
+
+            const updatedFile = JSON.stringify(jsonData, null, 2);
+            fs.writeFile(path_to_map_picks, updatedFile, 'utf8', (err) => {
+                if (err) {
+                    console.error('Error reading the file:', err);
+                    return res.status(400).send({
+                        "status": false,
+                        "message": "Failed to re-encode the json"
+                    });
+                }
+                res.status(200).send({
+                    "status": true,
+                    "message": "updated map picks successfully"
+                });
+                return 0
+            })
+        } catch (err) {
+            return res.status(400).send({
+                "status": false,
+                "message": "Failed to parse the json"
+            });
+        }
+    });
+});
 router.get('/admin', (req, res) => {
     if (req.session.user && req.session.user.loggedIn) {
         const target_page = req.query.page || 'prestream';
@@ -160,8 +225,7 @@ router.get('/auth', (req, res) => {
     }
 })
 
-
-//Main Login Maethod, create a session cookie for staying connected over multiple pages.
+//Main Login Method, create a session cookie for staying connected over multiple pages.
 router.post('/authenticate', upload.none(), (req, res) => {
     const { pw } = req.body;
 
@@ -180,6 +244,7 @@ router.post('/authenticate', upload.none(), (req, res) => {
         );
     }
 });
+
 //De-authenticates the user and destroys the session cookie
 router.post('/deauthenticate', (req, res) => {
     if(req.session){

@@ -1,12 +1,36 @@
 {
-    "teams": ["HLV", "FNC"],
-    "picks": [
-        ["icebox", "ban", 1],
-        ["haven", "ban", 0],
-        ["abyss", "defense", 1],
-        ["lotus", "defense", 0],
-        ["split", "ban", 1],
-        ["ascent", "ban", 0],
-        ["bind", "attack", 1]
+  "teams": [
+    "HLV",
+    "FNC"
+  ],
+  "picks": [
+    [
+      "bind",
+      "ban"
+    ],
+    [
+      "abyss",
+      "ban"
+    ],
+    [
+      "ascent",
+      "attack"
+    ],
+    [
+      "haven",
+      "defense"
+    ],
+    [
+      "split",
+      "ban"
+    ],
+    [
+      "pearl",
+      "ban"
+    ],
+    [
+      "fracture",
+      "attack"
     ]
+  ]
 }

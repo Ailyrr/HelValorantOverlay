@@ -101,6 +101,36 @@ body {
     padding: 10px;
     cursor: pointer;
 }
+/* ----- CSS PRE-STREAM PAGE ----- */
+.map-pick-holder{
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: var(--pannel-color-light);
+}
+.map-pick-update-container {
+    border-radius: 5px;
+    display: flex;
+    gap: 10px;
+    box-sizing: border-box;
+    padding: 10px;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    background-color: var(--pannel-color);
+}
+.map-pick-update-container span{
+    font-weight: 800;
+    color: var(--graph-red-dark);
+}
+.map-pick-update-container select{
+    flex-grow: 1;
+    height: 100%;
+}
 /* ----- CSS IN-STREAM PAGE ------ */
 .timer-list{
     height: 100%;

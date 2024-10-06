@@ -6,7 +6,10 @@
     <title>HelValorant Admin</title>
     <script src="../resources/js/auth.js" defer></script>
     <link rel="stylesheet" href="../resources/css/admin.css">
+    <link rel="stylesheet" href="../resources/css/alerts.css">
     <script src="https://kit.fontawesome.com/1061ea1575.js" crossorigin="anonymous"></script>
+    <script src="../resources/js/pre_stream.js" defer></script>
+    <script src="../resources/js/alerts.js" defer></script>
 </head>
 <body>
     <div class="admin-header">
@@ -20,7 +23,54 @@
         <a class="tab" href="?page=settings">Settings</a>
     </div>
     <div class="panel">
-        <h3>Pre-Stream PANNEL !</h3>
+        <div class="map-pick-holder">
+            <div class="map-pick-update-container">
+                <span>1</span>
+                <label for="map">Map</label>
+                <select class="map-pick-map-selector" name="map">
+                    <option value="abyss">Abyss</option>
+                    <option value="ascent">Ascent</option>
+                    <option value="bind">Bind</option>
+                    <option value="breeze">Breeze</option>
+                    <option value="fracture">Fracture</option>
+                    <option value="haven">Haven</option>
+                    <option value="icebox">Icebox</option>
+                    <option value="lotus">Lotus</option>
+                    <option value="pearl">Pearl</option>
+                    <option value="split">Split</option>
+                    <option value="sunset">Sunset</option>
+                </select>
+                <label for="action">Map Action</label>
+                <select class="map-pick-action-selector">
+                    <option value="ban">Ban</option>
+                    <option value="attack">Attack</option>
+                    <option value="defense">Defense</option>
+                </select>
+            </div>
+            <div class="map-pick-update-container">
+                <span>2</span>
+                <label for="map">Map</label>
+                <select class="map-pick-map-selector" name="map">
+                    <option value="abyss">Abyss</option>
+                    <option value="ascent">Ascent</option>
+                    <option value="bind">Bind</option>
+                    <option value="breeze">Breeze</option>
+                    <option value="fracture">Fracture</option>
+                    <option value="haven">Haven</option>
+                    <option value="icebox">Icebox</option>
+                    <option value="lotus">Lotus</option>
+                    <option value="pearl">Pearl</option>
+                    <option value="split">Split</option>
+                    <option value="sunset">Sunset</option>
+                </select>
+                <label for="action">Map Action</label>
+                <select class="map-pick-action-selector" >
+                    <option value="ban">Ban</option>
+                    <option value="attack">Attack</option>
+                    <option value="defense">Defense</option>
+                </select>
+            </div>
+        </div>
     </div>
 
 </body>
