@@ -20,6 +20,12 @@ We always wanted to have a real tournament overlay for community hosted events. 
 We aim to create the best possible overlay for smaller communities that would like to host VALORANT events. The overlay should resemble the VCT overlay as much as possible without needing tournament organizers to be registered and partnered with Riot Games.
 The main app works as a central server hosting ```.html``` files such as ```.json``` files. The overlays refresh every second by querying the files on the server. At the same time, each player in the current game will be sending their game state through the ```Overwolf App``` every second. The data is the parsed and stored in the files on the server thus updating the overlay on it's next update.
 
+### Why create a tournament overlay?
+While the community has used some basic visual assets for hosted tournaents that do not fall in the small exclusive group of partnered event sby riot, the need for a solid system remains. This system is built to be modular and customizable. Each element of the VCT-Style overlay can be added individually and edited to your need.\
+The different API-Endpoints being well defined on what they send back and do, it allows the user to potentially redo the entire overlay in their own style and build a 100% custom overlay while keeping all the possibilites the base overlay allows. (While not every function of the official overlay are available, we work on adding as many as possible.)
+
+## Setup
+
 ### Setup Host Server
 - Download or clone the repository in a desired folder
 - Download all dependencies needed for the program to work (fs, express)
