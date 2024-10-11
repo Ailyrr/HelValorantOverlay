@@ -22,54 +22,42 @@
         <a class="tab" href="?page=stream">Stream</a>
         <a class="tab" href="?page=settings">Settings</a>
     </div>
+
     <div class="panel">
-        <div class="map-pick-holder">
-            <div class="map-pick-update-container">
-                <span>1</span>
-                <label for="map">Map</label>
-                <select class="map-pick-map-selector" name="map">
-                    <option value="abyss">Abyss</option>
-                    <option value="ascent">Ascent</option>
-                    <option value="bind">Bind</option>
-                    <option value="breeze">Breeze</option>
-                    <option value="fracture">Fracture</option>
-                    <option value="haven">Haven</option>
-                    <option value="icebox">Icebox</option>
-                    <option value="lotus">Lotus</option>
-                    <option value="pearl">Pearl</option>
-                    <option value="split">Split</option>
-                    <option value="sunset">Sunset</option>
-                </select>
-                <label for="action">Map Action</label>
-                <select class="map-pick-action-selector">
-                    <option value="ban">Ban</option>
-                    <option value="attack">Attack</option>
-                    <option value="defense">Defense</option>
-                </select>
-            </div>
-            <div class="map-pick-update-container">
-                <span>2</span>
-                <label for="map">Map</label>
-                <select class="map-pick-map-selector" name="map">
-                    <option value="abyss">Abyss</option>
-                    <option value="ascent">Ascent</option>
-                    <option value="bind">Bind</option>
-                    <option value="breeze">Breeze</option>
-                    <option value="fracture">Fracture</option>
-                    <option value="haven">Haven</option>
-                    <option value="icebox">Icebox</option>
-                    <option value="lotus">Lotus</option>
-                    <option value="pearl">Pearl</option>
-                    <option value="split">Split</option>
-                    <option value="sunset">Sunset</option>
-                </select>
-                <label for="action">Map Action</label>
-                <select class="map-pick-action-selector" >
-                    <option value="ban">Ban</option>
-                    <option value="attack">Attack</option>
-                    <option value="defense">Defense</option>
-                </select>
-            </div>
+        <div class="team-setup-holder">
+           <div class="team-editor">
+                <h4>Matchup Setup</h4>
+                <div class="teams-preview">
+                    <span>
+                        <img src="../visual_assets/user_uploads/t1.jpg" alt="">
+                        <h3>PRX</h3>
+                    </span>
+                    <span class="vs-indicator">vs</span>
+                    <span>
+                        <h3 class="is-starting-team">HLV</h3>
+                        <img src="../visual_assets/user_uploads/t2.jpg" alt="">
+                    </span>
+                </div>
+                <input type="text" maxlength="4" placeholder="Team Abbreviation">
+                <div class="team-image-uploader">
+                    <span class="main">
+                        <label for="team-name-upload">Chose Team Icon</label>
+                        <input type="file" id="team-name-upload">
+                    </span>
+                    <span class="secondary">
+                        <label for="use-link">Use external link?</label>
+                        <input type="checkbox" id="use-link">
+                    </span>
+                </div>
+                <div class="team-start-side-setter">
+                    <input type="radio" name="side-set">
+                    <label for="side-set"><-- Starting Team (picks) --></label>
+                    <input type="radio" name="side-set" id="">
+                </div>
+           </div> 
+        </div>
+        <div class="map-pick-holder" id="map-pick-holder">
+            
         </div>
     </div>
 

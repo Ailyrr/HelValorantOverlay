@@ -1,7 +1,7 @@
 {
   "timer": {
-    "isOn": false,
-    "time": 10000,
-    "description": "Ailyrr Crashed"
+    "isOn": true,
+    "time": 30000,
+    "description": "Tech Pause (Gear)"
   }
 }

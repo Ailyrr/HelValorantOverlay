@@ -9,28 +9,28 @@
       "ban"
     ],
     [
-      "abyss",
+      "ascent",
       "ban"
     ],
     [
-      "ascent",
+      "breeze",
       "attack"
     ],
     [
       "haven",
-      "defense"
+      "attack"
     ],
     [
       "split",
-      "ban"
+      "defense"
+    ],
+    [
+      "sunset",
+      "defense"
     ],
     [
       "pearl",
-      "ban"
-    ],
-    [
-      "fracture",
-      "attack"
+      "defense"
     ]
   ]
 }

@@ -160,6 +160,13 @@ ADMIN ROUTES
 //Update map pick at some 
 router.post('/set_map_picks', upload.none(), (req, res) => {
     const { index, map, action } = req.body;
+    //Check for empty inputs
+    if(!index || !map || !action){
+        return res.status(400).send({
+            "status": false,
+            "message": "Missing Arguments"
+        });
+    }
     const path_to_map_picks = path.join(__dirname, '../map_picks.json');
     fs.readFile(path_to_map_picks, 'utf8', (err, data) => {
         if (err) {
