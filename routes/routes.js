@@ -148,13 +148,18 @@ router.post('/update_player_state', (req, res) => {
 Update Game state
 Send json information to update the game state information, round number, round won/lost, spike planted/defused, etc...
 */
-router.post('/update_game_state', upload.none(), (req, res) => {
-
+router.post('/register_external_user', upload.none(), (req, res) => {
+    const { player_token } = req.body;
+    if(!player_token){
+        return res.status(400).send({ status: false, message: 'Failed To Authenticate User'});
+    }
+    console.log(player_token);
+    return res.status(200).send({ status: true, message: 'User Registerd on offsite server!'});
 })
 /*
-------------
-ADMIN ROUTES
-------------
+--------------------------
+      ADMIN ROUTES
+--------------------------
 */
 
 //Update map pick at some 
