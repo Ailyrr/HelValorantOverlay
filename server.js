@@ -1,14 +1,18 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const cors = require('cors');
 const session = require('express-session');
 const port = 3000;
+const fs = require('fs');
+
 
 //Add all styling files to the application
 app.use(express.static(path.join(__dirname, './overlays')));
 app.use(express.static(path.join(__dirname, './panel/res')));
 // Middleware to parse JSON body
 app.use(express.json());
+app.use(cors());
 // Middleware to parse URL-encoded body
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
@@ -18,12 +22,10 @@ app.use(session({
   cookie: { maxAge: 24*60*60000}
 }));
 
-
 // Import routes javascript file
 const routes = require('./routes/routes');
 
 app.use('/', routes);
-
 
 //Start the application
 app.listen(port, () => {

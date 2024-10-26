@@ -1,2 +1,3 @@
 ./node_modules
-./capture_app/__pycache__
+/node_modules
+

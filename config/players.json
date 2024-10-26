@@ -1,0 +1,192 @@
+{
+    "player_0": {
+       "token": "",
+       "player_uuid": "",
+       "data": {
+         "username": "HLV Empereur",
+         "agent": "astra",
+         "health": 34,
+         "shield": 21,
+         "ult_points_needed": 8,
+         "ult_points_gained": 2,
+         "weapon": "vandal",
+         "c_util": true,
+         "q_util": true,
+         "e_util": true,
+         "x_util": false,
+         "credits": 8700,
+         "has_spike": false
+       }
+    },
+    "player_1": {
+        "token": "",
+        "player_uuid": "",
+        "data": {
+         "username": "TenZ",
+         "agent": "killjoy",
+         "health": 100,
+         "shield": 50,
+         "ult_points_needed": 8,
+         "ult_points_gained": 2,
+         "weapon": "vandal",
+         "c_util": true,
+         "q_util": true,
+         "e_util": true,
+         "x_util": false,
+         "credits": 8700,
+         "has_spike": false
+       }
+     },
+     "player_2": {
+        "token": "ailyrr-token-test",
+        "player_uuid": "",
+        "data": {
+         "username": "player_0",
+         "agent": "killjoy",
+         "health": 100,
+         "shield": 50,
+         "ult_points_needed": 8,
+         "ult_points_gained": 2,
+         "weapon": "vandal",
+         "c_util": true,
+         "q_util": true,
+         "e_util": true,
+         "x_util": false,
+         "credits": 8700,
+         "has_spike": false
+       }
+     },
+     "player_3": {
+        "token": "",
+        "player_uuid": "",
+        "data": {
+         "username": "player_0",
+         "agent": "killjoy",
+         "health": 100,
+         "shield": 50,
+         "ult_points_needed": 8,
+         "ult_points_gained": 2,
+         "weapon": "vandal",
+         "c_util": true,
+         "q_util": true,
+         "e_util": true,
+         "x_util": false,
+         "credits": 8700,
+         "has_spike": false
+       }
+     },
+     "player_4": {
+        "token": "",
+        "player_uuid": "iaosdasf",
+        "data": {
+         "username": "HLV Ailyrr",
+         "agent": "jett",
+         "health": 100,
+         "shield": 50,
+         "ult_points_needed": 8,
+         "ult_points_gained": 2,
+         "weapon": "operator",
+         "c_util": true,
+         "q_util": true,
+         "e_util": true,
+         "x_util": false,
+         "credits": 8700,
+         "has_spike": false
+       }
+     },
+     "player_5": {
+        "token": "kkkkkkkk",
+        "player_uuid": "iasoowkjfha",
+        "data": {
+         "username": "PRX Forsaken",
+         "agent": "skye",
+         "health": 100,
+         "shield": 50,
+         "ult_points_needed": 8,
+         "ult_points_gained": 2,
+         "weapon": "vandal",
+         "c_util": true,
+         "q_util": true,
+         "e_util": true,
+         "x_util": false,
+         "credits": 8700,
+         "has_spike": false
+       }
+     },
+     "player_6": {
+        "token": "",
+        "player_uuid": "",
+        "data": {
+         "username": "player_0",
+         "agent": "killjoy",
+         "health": 100,
+         "shield": 50,
+         "ult_points_needed": 8,
+         "ult_points_gained": 2,
+         "weapon": "vandal",
+         "c_util": true,
+         "q_util": true,
+         "e_util": true,
+         "x_util": false,
+         "credits": 8700,
+         "has_spike": false
+       }
+     },
+     "player_7": {
+        "token": "",
+        "player_uuid": "",
+        "data": {
+         "username": "player_0",
+         "agent": "killjoy",
+         "health": 100,
+         "shield": 50,
+         "ult_points_needed": 8,
+         "ult_points_gained": 2,
+         "weapon": "vandal",
+         "c_util": true,
+         "q_util": true,
+         "e_util": true,
+         "x_util": false,
+         "credits": 8700,
+         "has_spike": false
+       }
+     },
+     "player_8": {
+        "token": "",
+        "player_uuid": "",
+        "data": {
+         "username": "player_0",
+         "agent": "killjoy",
+         "health": 100,
+         "shield": 50,
+         "ult_points_needed": 8,
+         "ult_points_gained": 2,
+         "weapon": "vandal",
+         "c_util": true,
+         "q_util": true,
+         "e_util": true,
+         "x_util": false,
+         "credits": 8700,
+         "has_spike": false
+       }
+     },
+     "player_9": {
+        "token": "",
+        "player_uuid": "",
+        "data": {
+         "username": "player_0",
+         "agent": "killjoy",
+         "health": 100,
+         "shield": 50,
+         "ult_points_needed": 8,
+         "ult_points_gained": 2,
+         "weapon": "vandal",
+         "c_util": true,
+         "q_util": true,
+         "e_util": true,
+         "x_util": false,
+         "credits": 8700,
+         "has_spike": false
+       }
+     }
+}

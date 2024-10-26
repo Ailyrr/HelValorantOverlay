@@ -1,6 +1,6 @@
 {
   "name": "express-session",
-  "version": "1.18.0",
+  "version": "1.18.1",
   "description": "Simple session middleware for Express",
   "author": "TJ Holowaychuk <tj@vision-media.ca> (http://tjholowaychuk.com)",
   "contributors": [
@@ -10,7 +10,7 @@
   "repository": "expressjs/session",
   "license": "MIT",
   "dependencies": {
-    "cookie": "0.6.0",
+    "cookie": "0.7.2",
     "cookie-signature": "1.0.7",
     "debug": "2.6.9",
     "depd": "~2.0.0",
