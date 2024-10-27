@@ -145,27 +145,30 @@ class fileLoader{
         let playerKey = this.findPlayerKeyByToken(playerDataObject.token);
         if(playerKey.status){
             playerKey = playerKey.key;
-            if(this.config.players[playerKey].is_registered == false){
-                console.log('Token { ', playerDataObject.token, ' } was not yet registered, it is now.');
-                this.config.players[playerKey].is_registered = true;
+            if(this.config.players[playerKey].is_registered == true){
+                this.config.players[playerKey].data.username = playerDataObject.username ? playerDataObject.username : '';
+                this.config.players[playerKey].data.agent = playerDataObject.agent ? playerDataObject.agent : '';
+                this.config.players[playerKey].data.health = playerDataObject.health ? playerDataObject.health : 0;
+                this.config.players[playerKey].data.shield = playerDataObject.shield ? playerDataObject.shield : 0;
+                this.config.players[playerKey].data.ult_points_needed = playerDataObject.ult_points_needed ? playerDataObject.ult_points_needed : 0;
+                this.config.players[playerKey].data.ult_points_gained = playerDataObject.ult_points_gained ? playerDataObject.ult_points_gained : 0;
+                this.config.players[playerKey].data.weapon = playerDataObject.weapon ? playerDataObject.weapon : '';
+                this.config.players[playerKey].data.c_util = playerDataObject.c_util
+                this.config.players[playerKey].data.q_util = playerDataObject.q_util
+                this.config.players[playerKey].data.e_util = playerDataObject.e_util
+                this.config.players[playerKey].data.x_util = playerDataObject.x_util
+                this.config.players[playerKey].data.credits = playerDataObject.credits ? playerDataObject.credits : 0;
+                this.config.players[playerKey].data.has_spike = playerDataObject.has_spike;
+                this.config.players[playerKey].data.is_dead = playerDataObject.is_dead;
+                
+                //Reset last update to right now
+                this.config.players[playerKey].last_updated = Date.now();
+                return true
+            } else {
+                return false
             }
-            this.config.players[playerKey].data.username = playerDataObject.username.split('#')[0];
-            this.config.players[playerKey].data.agent = playerDataObject.agent;
-            this.config.players[playerKey].data.health = playerDataObject.health;
-            this.config.players[playerKey].data.shield = playerDataObject.shield;
-            this.config.players[playerKey].data.ult_points_needed = playerDataObject.ult_points_needed;
-            this.config.players[playerKey].data.ult_points_gained = playerDataObject.ult_points_gained;
-            this.config.players[playerKey].data.weapon = playerDataObject.weapon;
-            this.config.players[playerKey].data.c_util = playerDataObject.c_util;
-            this.config.players[playerKey].data.q_util = playerDataObject.q_util;
-            this.config.players[playerKey].data.e_util = playerDataObject.e_util;
-            this.config.players[playerKey].data.x_util = playerDataObject.x_util;
-            this.config.players[playerKey].data.credits = playerDataObject.credits;
-            this.config.players[playerKey].data.has_spike = playerDataObject.has_spike;
-            this.config.players[playerKey].data.is_dead = playerDataObject.is_dead;
-
-            //Reset last update to right now
-            this.config.players[playerKey].last_updated = Date.now();
+        } else {
+            return false
         }
     
     }

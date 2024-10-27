@@ -24,7 +24,7 @@ async function fetch_player_status_information(){
                         <img src="../visual_assets/game_icons/spike.webp" alt="">
                     </div>
                     <div class="player-status">
-                        <img class="player-agent" src="../visual_assets/agent_icons/jett_icon.webp" alt="">
+                        <img class="player-agent" src="../visual_assets/agent_icons/${json.team_1[`player_${i}`].agent}/${json.team_1[`player_${i}`].agent}_icon.webp" alt="">
 
                         <span class="player-credits">
 
@@ -34,7 +34,7 @@ async function fetch_player_status_information(){
                         <div style="width: 0%;" class="player-health-bar"></div>
                     </div>
                     <div class="player-name">
-                        <span class="player-name-container">Ailyrr</span>
+                        <span class="player-name-container">${json.team_1[`player_${i}`].username}</span>
                         <div class="player-ult-point-container">
 
                         </div>
@@ -56,7 +56,7 @@ async function fetch_player_status_information(){
                     <img src="../visual_assets/game_icons/spike.webp" alt="">
                 </div>
                 <div class="player-status">
-                    <img class="player-agent" src="../visual_assets/agent_icons/${json.team_1[`player_${i}`].agent}_icon.webp" alt="">
+                    <img class="player-agent" src="../visual_assets/agent_icons/${json.team_1[`player_${i}`].agent}/${json.team_1[`player_${i}`].agent}_icon.webp" alt="">
                     <img class="player-weapon" src="../visual_assets/game_icons/${json.team_1[`player_${i}`].weapon}.webp" alt="">
                     <span class="player-credits">
                         ${json.team_1[`player_${i}`].credits}
@@ -93,7 +93,7 @@ async function fetch_player_status_information(){
                         <img src="../visual_assets/game_icons/spike.webp" alt="">
                     </div>
                     <div class="player-status">
-                        <img class="player-agent" src="../visual_assets/agent_icons/jett_icon.webp" alt="">
+                        <img class="player-agent" src="../visual_assets/agent_icons/${json.team_2[`player_${i}`].agent}/${json.team_2[`player_${i}`].agent}_icon.webp" alt="">
 
                         <span class="player-credits">
 
@@ -103,7 +103,7 @@ async function fetch_player_status_information(){
                         <div style="width: 0%;" class="player-health-bar"></div>
                     </div>
                     <div class="player-name">
-                        <span class="player-name-container">Ailyrr</span>
+                        <span class="player-name-container">${json.team_2[`player_${i}`].username}</span>
                         <div class="player-ult-point-container">
 
                         </div>
@@ -125,7 +125,7 @@ async function fetch_player_status_information(){
                     <img src="../visual_assets/game_icons/spike.webp" alt="">
                 </div>
                 <div class="player-status">
-                    <img class="player-agent" src="../visual_assets/agent_icons/${json.team_2[`player_${i}`].agent}_icon.webp" alt="">
+                    <img class="player-agent" src="../visual_assets/agent_icons/${json.team_2[`player_${i}`].agent}/${json.team_2[`player_${i}`].agent}_icon.webp" alt="">
                     <img class="player-weapon" src="../visual_assets/game_icons/${json.team_2[`player_${i}`].weapon}.webp" alt="">
                     <span class="player-credits">
                         ${json.team_2[`player_${i}`].credits}
