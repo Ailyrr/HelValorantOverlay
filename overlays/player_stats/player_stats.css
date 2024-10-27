@@ -246,3 +246,16 @@ body::after, body::before{
     right: -15px;
     left: unset;
 }
+
+.right-team > .player-dead{
+    -webkit-filter: grayscale();
+    filter: grayscale();
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+    mask-image: linear-gradient(to left, black, transparent);
+}
+.left-team > .player-dead{
+    -webkit-filter: grayscale();
+    filter: grayscale();
+    -webkit-mask-image: linear-gradient(to right, black, transparent);
+    mask-image: linear-gradient(to right, black, transparent);
+}

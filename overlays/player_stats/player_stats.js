@@ -3,7 +3,6 @@ async function fetch_player_status_information(){
     var res = await fetch('../get_player_stats');
     var json = await res.json();
     if(json.status){
-        console.log(json);
         //create divs and set their classes
         let team_1_container = document.createElement('div');
         team_1_container.classList.add('right-team');
@@ -17,8 +16,34 @@ async function fetch_player_status_information(){
             team_2_container.classList.add('player-list-red-team');
         }
         for(let i = 0; i<5;i++){
-            if(json.team_1[`player_${i}`].player_uuid == ''){
+            if(json.team_1[`player_${i}`].is_registered == false){
                 team_1_container.innerHTML += `<div class="player-stat-container"></div>`;
+            } else if(json.team_1[`player_${i}`].health == 0 || json.team_1[`player_${i}`].is_dead == true){
+                team_1_container.innerHTML += `<div class="player-stat-container player-dead">
+                    <div class="has-spike-indicator">
+                        <img src="../visual_assets/game_icons/spike.webp" alt="">
+                    </div>
+                    <div class="player-status">
+                        <img class="player-agent" src="../visual_assets/agent_icons/jett_icon.webp" alt="">
+
+                        <span class="player-credits">
+
+                        </span>
+                    </div>
+                    <div class="player-health">
+                        <div style="width: 0%;" class="player-health-bar"></div>
+                    </div>
+                    <div class="player-name">
+                        <span class="player-name-container">Ailyrr</span>
+                        <div class="player-ult-point-container">
+
+                        </div>
+                        <span class="player-health-count">
+
+                            <span class="player-health-count-number"></span>
+                        </span>               
+                    </div>
+                </div>`;
             } else {
                 let ult_points = ``
                 for(let n = 0; n<json.team_1[`player_${i}`].ult_points_needed; n++){
@@ -60,8 +85,34 @@ async function fetch_player_status_information(){
             
         }
         for(let i = 0; i<5;i++){
-            if(json.team_2[`player_${i}`].player_uuid == ''){
-                team_1_container.innerHTML += `<div class="player-stat-container"></div>`;
+            if(json.team_2[`player_${i}`].is_registered == false){
+                team_2_container.innerHTML += `<div class="player-stat-container"></div>`;
+            } else if(json.team_2[`player_${i}`].health == 0 || json.team_2[`player_${i}`].is_dead == true){
+                team_2_container.innerHTML += `<div class="player-stat-container player-dead">
+                    <div class="has-spike-indicator">
+                        <img src="../visual_assets/game_icons/spike.webp" alt="">
+                    </div>
+                    <div class="player-status">
+                        <img class="player-agent" src="../visual_assets/agent_icons/jett_icon.webp" alt="">
+
+                        <span class="player-credits">
+
+                        </span>
+                    </div>
+                    <div class="player-health">
+                        <div style="width: 0%;" class="player-health-bar"></div>
+                    </div>
+                    <div class="player-name">
+                        <span class="player-name-container">Ailyrr</span>
+                        <div class="player-ult-point-container">
+
+                        </div>
+                        <span class="player-health-count">
+
+                            <span class="player-health-count-number"></span>
+                        </span>               
+                    </div>
+                </div>`;
             } else {
                 let ult_points = ``
                 for(let n = 0; n<json.team_2[`player_${i}`].ult_points_needed; n++){

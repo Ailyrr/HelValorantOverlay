@@ -5,123 +5,10 @@ const router = express.Router();
 const multer = require('multer');
 const session = require('express-session');
 const upload = multer();
-
-function findPlayerByToken(players, token) {
-    // Loop through each player in the object
-    for (const key in players) {
-      // Check if the key matches the "player_" pattern and the token matches
-      if (key.startsWith("player_") && players[key].token == token) {
-        // Check if the player_uuid is empty
-        if (players[key].player_uuid == '') {
-          // Return the player number (key)
-          return key;
-        }
-      }
-    }
-    // Return null if no matching player is found
-    return null;
-  }
-
-class fileLoader{
-    constructor(){
-        this.isInitialized = false;
-
-        this._adminPassword = null; //Make this private
-
-        this.config = {
-            players: null,
-            gameState: null,
-            mapPicks: null,
-            timer: null
-        }
-    }
-    init(configFilesLocation){
-        if(this.isInitialized){
-            console.log('fileLoader() | Files are already loaded into memory');
-            return false;
-        }
-        //Read in players
-        fs.readFile(path.join(__dirname, `${configFilesLocation}/players.json`), 'utf8', (error, data) => {
-            if(error){
-                console.log('fileLoader() | Target File players.json does not exist.')
-                return false;
-            }
-            const players = JSON.parse(data);
-            //Assign new data to main object
-
-            this.config.players = players;
-        });
-        //Read in Game State
-        fs.readFile(path.join(__dirname, `${configFilesLocation}/gameState.json`), 'utf8', (error, data) => {
-          if(error){
-              console.log('fileLoader() | Target File gameState.json does not exist.')
-              return false;
-          }
-          const gameState = JSON.parse(data);
-          //Assign new data to main object
-
-          this.config.gameState = gameState;
-        });
-        //Read in Map Picks
-        fs.readFile(path.join(__dirname, `${configFilesLocation}/mapPicks.json`), 'utf8', (error, data) => {
-          if(error){
-              console.log('fileLoader() | Target File mapPicks.json does not exist.')
-              return false;
-          }
-          const picks = JSON.parse(data);
-          //Assign new data to main object
-
-          this.config.mapPicks = picks;
-        });
-        //Read in Timer
-        fs.readFile(path.join(__dirname, `${configFilesLocation}/timer.json`), 'utf8', (error, data) => {
-          if(error){
-              console.log('fileLoader() | Target File streamState.json does not exist.')
-              return false;
-          }
-          const timer = JSON.parse(data);
-          //Assign new data to main object
-
-          this.config.timer = timer;
-        });
-
-        //Read in Admin Password
-        fs.readFile(path.join(__dirname, `${configFilesLocation}/appConfig.json`), 'utf8', (error, data) => {
-            if(error){
-                console.log('fileLoader() | Target File streamState.json does not exist.')
-                return false;
-            }
-            const password = JSON.parse(data);
-            //Assign new data to main object
-    
-            this._adminPassword = password.admin_key;
-          });
-        setTimeout(() => {
-          console.info('fileLoader() | All Files Where Loaded into RAM!');
-        }, 1000);
-    }
-    checkPassword(userInput) {
-        return this._adminPassword === userInput;
-    }
-    updateMapPick(targetIndex, map, action){
-        this.config.mapPicks.picks[targetIndex] = [map, action]
-    }
-    setTimer(timeMiliseconds, description){
-        this.config.timer.time = timeMiliseconds;
-        this.config.timer.description = description;
-        this.config.timer.isOn = true;
-    }
-    getTimer(){
-        return {
-            isOn: this.config.timer.isOn,
-            time: this.config.timer.time,
-            description: this.config.timer.description
-        }
-    }
-}
+const fileLoader = require('../fileLoader');
 
 const dataBus = new fileLoader();
-dataBus.init('../config'); //Init dataBus by loading the config files into the instance of fileLoader()
+dataBus.init('./config'); //Init dataBus by loading the config files into the instance of fileLoader()
 
 // Endpoint to get map picks
 router.get('/get_map_picks', (req, res) => {
@@ -140,11 +27,11 @@ router.get('/get_player_stats', (req, res) => {
     //Reformat the json files to correspond to team_1 and team_2 respectively
     for(let i = 0; i < 5; i++){
         responseObject.team_1[`player_${i}`] = dataBus.config.players[`player_${i}`]['data'];
-        responseObject.team_1[`player_${i}`]["player_uuid"] =  dataBus.config.players[`player_${i}`]['player_uuid']
+        responseObject.team_1[`player_${i}`]['is_registered'] =  dataBus.config.players[`player_${i}`].is_registered
     }
     for(let i = 5; i < 10; i++){
         responseObject.team_2[`player_${i-5}`] = dataBus.config.players[`player_${i}`]['data'];
-        responseObject.team_2[`player_${i-5}`]["player_uuid"] =  dataBus.config.players[`player_${i}`]['player_uuid']
+        responseObject.team_2[`player_${i-5}`]['is_registered'] =  dataBus.config.players[`player_${i}`].is_registered
     }
     res.status(200).send(responseObject);
 });
@@ -174,31 +61,54 @@ Externally used endpoints
 Update player states
 Recieve json to update each player's game information, health, weapon, credits, shield, etc...
 */
+
 router.post('/update_player_state', upload.none(), (req, res) => {
-    const { data } = req.body;
-    console.log('Player Stats recieved: ', data);
-    return res.status(200).send({ message: 'Stats Recieved' });
+    var { playerData } = req.body;
+    playerData = JSON.parse(playerData)
+    console.log('\x1b[34m%s\x1b[0m', new Date().toLocaleString(), ' | Player Stats recieved by player with token: ', playerData.token);
+    dataBus.updatePlayerData(playerData);
+    return res.status(200).send({ status: true })
 });
-/*
+/*  
 Update Game state
 Send json information to update the game state information, round number, round won/lost, spike planted/defused, etc...
 */
 router.post('/register_external_user', upload.none(), (req, res) => {
-    const { player_token } = req.body;
-    if(!player_token){
-        return res.status(400).send({ status: false, message: 'Failed To Authenticate User' });
+    const { playerToken } = req.body;
+    if(!playerToken){
+        return res.status(406).send({ status: false, message: 'Missing Arguments!' });
     }
     //Check if token is valid and not yet taken.
-    fs.readFile(path.join(__dirname, '../players.json'), 'utf8', (err, data) => {
-        if(err){
-            return res.status(500);
-        }
-        const playerJson = JSON.parse(data);
-        const player_index = findPlayerByToken(playerJson, player_token);
-        console.log(player_index);
-    })
-    console.log(new Date(), " | Registered player with token: ", player_token);
-    return res.status(200).send({ status: true, message: 'User Registerd on offsite server!'});
+    let playerTokenKey = dataBus.checkGameTokenValidity(playerToken);
+    if(playerTokenKey.status){
+        playerTokenKey = playerTokenKey.key;
+        dataBus.config.players[playerTokenKey].is_registered = true;
+        dataBus.config.players[playerTokenKey].last_updated = Date.now();
+        
+        console.log('\x1b[34m%s\x1b[0m', new Date().toLocaleString(), " | Registered user with token:", playerToken);
+
+        return res.status(200).send({ status: true, message: 'User Registerd on offsite server!'});
+    } else {
+        return res.status(400).send({ status: false, message: playerTokenKey.message});
+    }
+})
+router.post('/clear_external_user', upload.none(), (req, res) => {
+    const { playerToken } = req.body;
+    if(!playerToken){
+        return res.status(406).send({ status: false, message: 'Missing Arguments!' });
+    }
+    //Check if token is valid and not yet taken.
+    let playerTokenKey = dataBus.findPlayerKeyByToken(playerToken);
+    if(playerTokenKey.status){
+        playerTokenKey = playerTokenKey.key;
+        dataBus.config.players[playerTokenKey].is_registered = false;
+        
+        console.log('\x1b[34m%s\x1b[0m', new Date().toLocaleString(), " | User with token:", playerToken, " has de-registered");
+
+        return res.status(200).send({ status: true, message: 'User cleared from offsite server!'});
+    } else {
+        return res.status(400).send({ status: false, message: playerTokenKey.message});
+    }
 })
 /*
 --------------------------
@@ -248,6 +158,10 @@ router.get('/auth', (req, res) => {
     }
 })
 
+router.get('/regenerate_user_tokens', (req, res) => {
+    dataBus.regeneratePlayerTokens();
+    return res.status(200).send({ status: true });
+})
 //Main Login Method, create a session cookie for staying connected over multiple pages.
 router.post('/authenticate', upload.none(), (req, res) => {
     const { pw } = req.body;
@@ -281,6 +195,14 @@ router.post('/deauthenticate', (req, res) => {
     })
 })
 
+/*
+--------------------------
+      ADMIN ROUTES
+--------------------------
+*/
 
+router.get('/print_state', (req, res) => {
+    return res.status(200).send(dataBus.config);
+})
 
 module.exports = router;
