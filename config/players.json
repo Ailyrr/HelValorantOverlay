@@ -6,22 +6,22 @@
        "data": {
          "username": "Ailyrr",
          "agent": "Jett",
-         "health": 0,
-         "shield": 0,
-         "ult_points_needed": 0,
-         "ult_points_gained": 0,
-         "weapon": "",
+         "health": 76,
+         "shield": 2,
+         "ult_points_needed": 7,
+         "ult_points_gained": 7,
+         "weapon": "operator",
          "c_util": true,
-         "q_util": true,
+         "q_util": false,
          "e_util": true,
          "x_util": false,
-         "credits": 0,
+         "credits": 3600,
          "has_spike": false,
          "is_dead": false
        }
     },
     "player_1": {
-        "token": "",
+        "token": "dsa",
         "is_registered": false,
         "last_updated": null,
         "data": {

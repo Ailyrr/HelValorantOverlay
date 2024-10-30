@@ -1,7 +1,8 @@
 {
-    "is_remote_origin": false,
+    "switch_sides": false,
+    "round_number": 0,
     "game_stage": "",
-    "switch_sides": true,
+    "spike_down": false,
     "team_1": {
         "abbreviation": "",
         "icon_link": "",

@@ -69,30 +69,54 @@ body::after, body::before{
     display: flex;
     align-items: center;
     gap: 10px;
+    position: relative;
 }
 .player-status .player-weapon{
-    height: 28px;
+    max-height: 29px;
     transform: scaleX(-1);
+    margin-right: auto;
+    margin-left: 10px;
+    max-width: 150px;
+    height: auto;
+}
+.player-status .player-ability{
+    width: 25px;
+    height: auto;
+    filter: opacity(.4);
+}
+.player-status .ability-available{
+    filter: unset;
 }
 .player-status .player-credits{
     margin-left: auto;
     margin-right: 10px;
+    margin-bottom: 5px;
+    margin-top: auto;
     color: #fff;
     display: flex;
     gap: 4px;
     font-weight: 700;
     align-items: center;
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
 }
 .right-team .player-status .player-credits{
     margin-left: 10px;
     margin-right: auto;
     flex-direction: row-reverse;
+    position: absolute;
+    right: unset !important;
+    left: 3px;
+    bottom: 3px;
 }
 .player-status .player-credits img{
     height: 12px;
 }
 .right-team .player-status .player-weapon{
     transform: scaleX(1);
+    margin-right: 10px;
+    margin-left: auto;
 }
 .right-team .player-status{
     flex-direction: row-reverse;
@@ -170,13 +194,30 @@ body::after, body::before{
 }
 .player-ult-point{
     --side-length: 10px;
-    background-color: var(--overlay_black);
     height: var(--side-length);
     width: var(--side-length);
-    clip-path: polygon(0px calc(50%), calc(50%) 0px, calc(100%) calc(50%), calc(50%) calc(100%));
 }
 .full-point{
-    background-color: #fff;
+    color: #fff;
+    filter: invert(1);
+}
+.player-ult-indicator-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    min-width: 30px;
+    width: fit-content;
+    position: relative;
+}
+.player-ult-indicator-container .border{
+    height: 28px;
+}
+.player-ult-indicator-container .ult-icon{
+    position: absolute;
+    height: 26px;
+    width: auto;
+    filter: invert(1);
 }
 .player-name .player-health-count{
     display: flex;

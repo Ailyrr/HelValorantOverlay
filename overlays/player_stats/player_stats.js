@@ -16,9 +16,9 @@ async function fetch_player_status_information(){
             team_2_container.classList.add('player-list-red-team');
         }
         for(let i = 0; i<5;i++){
-            if(json.team_1[`player_${i}`].is_registered == false){
+            if(json.team_1[`player_${i}`].is_registered == false){ //Check if player is being updated
                 team_1_container.innerHTML += `<div class="player-stat-container"></div>`;
-            } else if(json.team_1[`player_${i}`].health == 0 || json.team_1[`player_${i}`].is_dead == true){
+            } else if(json.team_1[`player_${i}`].health == 0 || json.team_1[`player_${i}`].is_dead == true){ //Check if player is dead
                 team_1_container.innerHTML += `<div class="player-stat-container player-dead">
                     <div class="has-spike-indicator">
                         <img src="../visual_assets/game_icons/spike.webp" alt="">
@@ -47,9 +47,14 @@ async function fetch_player_status_information(){
             } else {
                 let ult_points = ``
                 for(let n = 0; n<json.team_1[`player_${i}`].ult_points_needed; n++){
-                    ult_points += `<div class="player-ult-point ${json.team_1[`player_${i}`].ult_points_gained > n ? 'full-point' : ''}"></div>`
+                    ult_points += `<img class="player-ult-point ${json.team_1[`player_${i}`].ult_points_gained > n ? 'full-point' : ''}" src="../visual_assets/diamond-solid.svg">`;
                 }
-                ult_points = (json.team_1[`player_${i}`].ult_points_needed == json.team_1[`player_${i}`].ult_points_gained) ? '<span><span style="color: #000; background-color: white; padding: 2px 10px; font-weight: 600;">Ult Ready</span></span>' : ult_points;
+                let ult_ready = `
+                    <div class="player-ult-indicator-container">
+                        <img class="border" src="../visual_assets/ultimage-charged-border.svg">
+                        <img class="ult-icon" src="../visual_assets/agent_icons/${json.team_1[`player_${i}`].agent}/ability_x.webp">
+                    </div>`
+                ult_points = (json.team_1[`player_${i}`].ult_points_needed == json.team_1[`player_${i}`].ult_points_gained) ? ult_ready : ult_points;
                 team_1_container.innerHTML += `
                 <div class="player-stat-container">
                 <div class="has-spike-indicator ${json.team_1[`player_${i}`].has_spike ? 'has-spike' : ''}">
@@ -57,6 +62,9 @@ async function fetch_player_status_information(){
                 </div>
                 <div class="player-status">
                     <img class="player-agent" src="../visual_assets/agent_icons/${json.team_1[`player_${i}`].agent}/${json.team_1[`player_${i}`].agent}_icon.webp" alt="">
+                    <img class="player-ability ${json.team_1[`player_${i}`].c_util ? 'ability-available' : ''}" src="../visual_assets/agent_icons/${json.team_1[`player_${i}`].agent}/ability_c.webp">
+                    <img class="player-ability ${json.team_1[`player_${i}`].q_util ? 'ability-available' : ''}" src="../visual_assets/agent_icons/${json.team_1[`player_${i}`].agent}/ability_q.webp">
+                    <img class="player-ability ${json.team_1[`player_${i}`].e_util ? 'ability-available' : ''}" src="../visual_assets/agent_icons/${json.team_1[`player_${i}`].agent}/ability_e.webp">
                     <img class="player-weapon" src="../visual_assets/game_icons/${json.team_1[`player_${i}`].weapon}.webp" alt="">
                     <span class="player-credits">
                         ${json.team_1[`player_${i}`].credits}
@@ -72,7 +80,7 @@ async function fetch_player_status_information(){
                         ${ult_points}
                     </div>
                     <span class="player-health-count">
-                        <div class="player-shield-outline ${json.team_1[`player_${i}`].shield == 0 ? 'shield-down' : ''}">
+                        <div class="player-shield-outline ${json.team_1[`player_${i}`].shield == 0 ? 'shield-down' : json.team_2[`player_${i}`].shield == 1 ? 25 : 50}">
                             <div class="player-shield-count">
                             ${json.team_1[`player_${i}`].shield}
                             </div>
@@ -85,9 +93,9 @@ async function fetch_player_status_information(){
             
         }
         for(let i = 0; i<5;i++){
-            if(json.team_2[`player_${i}`].is_registered == false){
+            if(json.team_2[`player_${i}`].is_registered == false){ //Check if this player is being updated
                 team_2_container.innerHTML += `<div class="player-stat-container"></div>`;
-            } else if(json.team_2[`player_${i}`].health == 0 || json.team_2[`player_${i}`].is_dead == true){
+            } else if(json.team_2[`player_${i}`].health == 0 || json.team_2[`player_${i}`].is_dead == true){ // Check if player is dead to show dead 
                 team_2_container.innerHTML += `<div class="player-stat-container player-dead">
                     <div class="has-spike-indicator">
                         <img src="../visual_assets/game_icons/spike.webp" alt="">
@@ -116,9 +124,14 @@ async function fetch_player_status_information(){
             } else {
                 let ult_points = ``
                 for(let n = 0; n<json.team_2[`player_${i}`].ult_points_needed; n++){
-                    ult_points += `<div class="player-ult-point ${json.team_2[`player_${i}`].ult_points_gained > n ? 'full-point' : ''}"></div>`
+                    ult_points += `<img class="player-ult-point ${json.team_2[`player_${i}`].ult_points_gained > n ? 'full-point' : ''}" src="../visual_assets/diamond-solid.svg">`;
                 }
-                ult_points = (json.team_2[`player_${i}`].ult_points_needed == json.team_2[`player_${i}`].ult_points_gained) ? '<span style="color: #000; background-color: white; padding: 2px 10px; font-weight: 600;">Ult Ready</span>' : ult_points;
+                let ult_ready = `
+                <div class="player-ult-indicator-container">
+                    <img class="border" src="../visual_assets/ultimage-charged-border.svg">
+                    <img class="ult-icon" src="../visual_assets/agent_icons/${json.team_2[`player_${i}`].agent}/ability_x.webp">
+                </div>`
+                ult_points = (json.team_2[`player_${i}`].ult_points_needed == json.team_2[`player_${i}`].ult_points_gained) ? ult_ready : ult_points;
                 team_2_container.innerHTML += `
                 <div class="player-stat-container">
                 <div class="has-spike-indicator ${json.team_2[`player_${i}`].has_spike ? 'has-spike' : ''}">
@@ -126,6 +139,9 @@ async function fetch_player_status_information(){
                 </div>
                 <div class="player-status">
                     <img class="player-agent" src="../visual_assets/agent_icons/${json.team_2[`player_${i}`].agent}/${json.team_2[`player_${i}`].agent}_icon.webp" alt="">
+                    <img class="player-ability ${json.team_2[`player_${i}`].c_util ? 'ability-available' : ''}" src="../visual_assets/agent_icons/${json.team_2[`player_${i}`].agent}/ability_c.webp">
+                    <img class="player-ability ${json.team_2[`player_${i}`].q_util ? 'ability-available' : ''}" src="../visual_assets/agent_icons/${json.team_2[`player_${i}`].agent}/ability_q.webp">
+                    <img class="player-ability ${json.team_2[`player_${i}`].e_util ? 'ability-available' : ''}" src="../visual_assets/agent_icons/${json.team_2[`player_${i}`].agent}/ability_e.webp">
                     <img class="player-weapon" src="../visual_assets/game_icons/${json.team_2[`player_${i}`].weapon}.webp" alt="">
                     <span class="player-credits">
                         ${json.team_2[`player_${i}`].credits}
@@ -141,7 +157,7 @@ async function fetch_player_status_information(){
                         ${ult_points}
                     </div>
                     <span class="player-health-count">
-                        <div class="player-shield-outline ${json.team_2[`player_${i}`].shield == 0 ? 'shield-down' : ''}">
+                        <div class="player-shield-outline ${json.team_2[`player_${i}`].shield == 0 ? 'shield-down' : (json.team_2[`player_${i}`].shield == 1 ? "25" : "50")}">
                             <div class="player-shield-count">
                             ${json.team_2[`player_${i}`].shield}
                             </div>
@@ -158,12 +174,9 @@ async function fetch_player_status_information(){
     } else {
         console.log('Error fetching data.')
     }
-    setTimeout(() => {
+    setTimeout( async () => {
         fetch_player_status_information();
     }, 1000)
 }
 
-
-fetch_player_status_information()
-
-
+fetch_player_status_information();

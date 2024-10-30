@@ -64,7 +64,6 @@ Recieve json to update each player's game information, health, weapon, credits, 
 
 router.post('/update_player_state', upload.none(), (req, res) => {
     var { playerData } = req.body;
-    console.log(playerData)
     playerData = JSON.parse(playerData)
     console.log('\x1b[34m%s\x1b[0m', new Date().toLocaleString(), ' | Player Stats recieved by player with token: ', playerData.token);
     let updateSuccess = dataBus.updatePlayerData(playerData);

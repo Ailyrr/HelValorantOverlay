@@ -168,6 +168,9 @@ body::after, body::before{
 .spike-container .spike-image{
     height: 45px;
     width: 45px;
+    background-color: white;
+    mask-image: url(../visual_assets/game_icons/spike.webp);
+    mask-size: 45px;
 }
 .spike-container{
     position: absolute;
@@ -183,4 +186,7 @@ body::after, body::before{
     height: var(--side-length);
     width: var(--side-length);
     background-color: #fff;
+}
+.hidden{
+    opacity: 0;
 }
