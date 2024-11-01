@@ -49,6 +49,7 @@ body::after, body::before{
 }
 .map-select-container .information-text{
     font-weight: 500;
+    color: #fff;
 }
 .map-select-container .map-text{
     font-weight: 700;

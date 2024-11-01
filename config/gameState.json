@@ -3,15 +3,55 @@
     "round_number": 0,
     "game_stage": "",
     "spike_down": false,
+    "game_flow": {
+        "map_1": {
+            "state": "over",
+            "winner": "team_2",
+            "team_1_score": 14,
+            "team_2_score": 16,
+            "map": "icebox"
+        },
+        "map_2": {
+            "state": "over",
+            "winner": "team_1",
+            "team_1_score": 13,
+            "team_2_score": 9,
+            "map": "lotus"
+        },
+        "map_3": {
+            "state": "over",
+            "winner": "team_2",
+            "team_1_score": 4,
+            "team_2_score": 13,
+            "map": "bind"
+        },
+        "map_4": {
+            "state": "over",
+            "winner": "team_1",
+            "team_1_score": 4,
+            "team_2_score": 13,
+            "map": "pearl"
+        },
+        "map_5": {
+            "state": "current",
+            "winner": "team_2",
+            "team_1_score": 4,
+            "team_2_score": 13,
+            "map": "ascent",
+            "map_pick": ""
+        }
+    },
     "team_1": {
-        "abbreviation": "",
-        "icon_link": "",
+        "abbreviation": "FNC",
+        "icon_link": "https://cdn.sanity.io/images/5gii1snx/production/c32c2cb848fd3338ff23a590ec5c0e052b080f27-1000x1000.png",
+        "team_info": "#2 Seed",
         "won_games": 0,
         "current_score": 0
     },
     "team_2": {
-        "abbreviation": "",
-        "icon_link": "",
+        "abbreviation": "HLV",
+        "icon_link": "https://pbs.twimg.com/profile_images/1553766469955043328/td9gZwlS_400x400.jpg",
+        "team_info": "#1 Seed",
         "won_games": 0,
         "current_score": 0
     }

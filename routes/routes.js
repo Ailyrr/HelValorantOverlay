@@ -51,6 +51,23 @@ router.post('/set_timer', upload.none(), (req, res) => {
     return res.status(200).send({ status: true });
 })
 
+//Get Initual game configuration usually requested once on load of overlay
+router.get('/get_game_configuration', (req, res) => {
+    return res.status(200).send(dataBus.getGameConfiguration());
+})
+//Get current game state requested every 200ms
+router.get('/get_game_state', (req, res) => {
+    return res.status(200).send(dataBus.getGameState());
+})
+router.post('/change_game_state', upload.none(), (req, res) => {
+    const { stage, spike } = req.body;
+    console.log(stage)
+    let spikeDown = false;
+    if(spike == 'down') spikeDown = true;
+    dataBus.config.gameState.game_stage = stage;
+    dataBus.config.gameState.spike_down = spikeDown;
+    return res.status(200).send({ status: true });
+})
 /*
 -------------------------
 Externally used endpoints
@@ -199,9 +216,9 @@ router.post('/deauthenticate', (req, res) => {
 })
 
 /*
---------------------------
-      ADMIN ROUTES
---------------------------
+-----------------------------------------
+  UTILITY STATE (REMOVE FOR PRODUCTION)
+-----------------------------------------
 */
 
 router.get('/print_state', (req, res) => {

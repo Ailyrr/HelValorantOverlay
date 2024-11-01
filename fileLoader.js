@@ -104,9 +104,6 @@ class fileLoader{
         return crypto.randomBytes(12).toString('base64').slice(0,15);
     }
     //Timer Logic
-    updateMapPick(targetIndex, map, action){
-        this.config.mapPicks.picks[targetIndex] = [map, action]
-    }
     setTimer(timeMiliseconds, description){
         this.config.timer.time = timeMiliseconds;
         this.config.timer.description = description;
@@ -146,6 +143,7 @@ class fileLoader{
         if(playerKey.status){
             playerKey = playerKey.key;
             if(this.config.players[playerKey].is_registered == true){
+                //Change every aspect of the targeted player ebject
                 this.config.players[playerKey].data.username = playerDataObject.username ? playerDataObject.username : '';
                 this.config.players[playerKey].data.agent = playerDataObject.agent ? playerDataObject.agent : '';
                 this.config.players[playerKey].data.health = playerDataObject.health ? playerDataObject.health : 0;
@@ -180,8 +178,29 @@ class fileLoader{
         }
         console.log('\x1b[91m%s\x1b[0m', new Date().toLocaleString() + ' | Regenerated all game tokens')
     }
-
-
+    //Game Logic
+    getGameConfiguration(){
+        return {
+            team_1: this.config.gameState.team_1,
+            team_2: this.config.gameState.team_2,
+            game_flow: this.config.gameState.game_flow
+        }
+    }
+    getGameState(){
+        return {
+            switch_sides: this.config.gameState.switch_sides,
+            round_number: this.config.gameState.round_number,
+            game_stage: this.config.gameState.game_stage,
+            spike_down: this.config.gameState.spike_down,
+        }
+    }
+    //Map Pick Logic
+    updateMapPick(targetIndex, map, action){
+        this.config.mapPicks.picks[targetIndex] = [map, action]
+    }
+    reCalculateMapFlow(){
+        
+    }
     //Function to perpetually check for update status on player tokens to kick out inactive users
     //to prevent a potential softlock by players whose pc crashes which could result in a ghost user that is counted as registered
     checkForInactivePlayers(){

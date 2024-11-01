@@ -101,7 +101,7 @@ body::after, body::before{
     padding-right: 15px;
     padding-left: unset;
 }
-.team-container .score-holder .score{
+.team-container .score-holder .score-span{
     font-weight: 800;
     color: #fff;
     font-size: xx-large;
@@ -168,9 +168,6 @@ body::after, body::before{
 .spike-container .spike-image{
     height: 45px;
     width: 45px;
-    background-color: white;
-    mask-image: url(../visual_assets/game_icons/spike.webp);
-    mask-size: 45px;
 }
 .spike-container{
     position: absolute;
