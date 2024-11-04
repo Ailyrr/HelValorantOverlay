@@ -8,18 +8,28 @@
     <script src="./game_score.js" defer></script>
 </head>
 <body>
+    
+    <!--<img src="../visual_assets/nik.png" alt="" style="position: absolute; left: 0; top:0; opacity: 1;">-->
+
     <div id="left-team" class="team-container left-team green-team">
         <!-- Left Team Html Goad here -->
     </div>
+    <span id="round-counter" class="round-counter">
+        Round 3
+    </span>
     <div class="central-game-timer">
-        <span id="round-counter" class="round-counter">
-            Round 3
-        </span>
-        <span class="timer" id="timer"><span style="color: white;">--:--</span></span>
+        <!-- PURELY DECORATIVE ELEMENT / TIMER STRING IS DISPLAYED IN-GAME OBSERVER MODE-->
     </div>
+    <div class="central-game-timer-extension">
+        <!-- SMALL EXTENSION PURELY FOR DECORATIVE PURPOSE-->
+    </div>
+    <svg class="score-decorator" height="82" width="610" onpause="0.6">
+        <path d="M0 6 L125 6 M140 6 L198 6 L235 72 L375 72 L412 6 L470 6 M485 6 L610 6" stroke="white" stroke-width="1" fill="none"></path>
+        <path d="M225 72.7 L230 80 L380 80 L385 72.7" stroke="white" stroke-width="1" fill="none"></path>
+    </svg>
     <div class="spike-container">
         <div style="clip-path: polygon(0px calc(50%), calc(100%) 0px, calc(100%) calc(100%));" class="attack-indicator hidden"></div>
-        <img id="spike" class="spike-image" src="../visual_assets/spike.svg"></img>
+        <img id="spike" class="spike-image" src="../visual_assets/spike_white.png"></img>
         <div style="clip-path: polygon(0px 0px, calc(100%) calc(50%), 0px calc(100%));" class="attack-indicator"></div>
     </div>
     <div class="maps-won-container">

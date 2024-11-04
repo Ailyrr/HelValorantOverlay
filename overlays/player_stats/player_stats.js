@@ -80,9 +80,9 @@ async function fetch_player_status_information(){
                         ${ult_points}
                     </div>
                     <span class="player-health-count">
-                        <div class="player-shield-outline ${json.team_1[`player_${i}`].shield == 0 ? 'shield-down' : json.team_2[`player_${i}`].shield == 1 ? 25 : 50}">
+                        <div class="player-shield-outline ${json.team_1[`player_${i}`].shield == 0 ? 'shield-down' : ''}">
                             <div class="player-shield-count">
-                            ${json.team_1[`player_${i}`].shield}
+                            ${json.team_1[`player_${i}`].shield == 0 ? 0 : (json.team_2[`player_${i}`].shield == 1 ? 25 : 50)}
                             </div>
                         </div>
                         <span class="player-health-count-number">${json.team_1[`player_${i}`].health}</span>
@@ -157,9 +157,9 @@ async function fetch_player_status_information(){
                         ${ult_points}
                     </div>
                     <span class="player-health-count">
-                        <div class="player-shield-outline ${json.team_2[`player_${i}`].shield == 0 ? 'shield-down' : (json.team_2[`player_${i}`].shield == 1 ? "25" : "50")}">
+                        <div class="player-shield-outline ${json.team_2[`player_${i}`].shield == 0 ? 'shield-down' : ''}">
                             <div class="player-shield-count">
-                            ${json.team_2[`player_${i}`].shield}
+                            ${json.team_1[`player_${i}`].shield == 0 ? 0 : (json.team_2[`player_${i}`].shield == 1 ? 25 : 50)}
                             </div>
                         </div>
                         <span class="player-health-count-number">${json.team_2[`player_${i}`].health}</span>
@@ -176,7 +176,7 @@ async function fetch_player_status_information(){
     }
     setTimeout( async () => {
         fetch_player_status_information();
-    }, 1000)
+    }, 500)
 }
 
 fetch_player_status_information();

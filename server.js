@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 const cors = require('cors');
 const session = require('express-session');
-const port = 3000;
+const port = 25565;
 const fs = require('fs');
 
 

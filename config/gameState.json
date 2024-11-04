@@ -1,8 +1,9 @@
 {
-    "switch_sides": false,
     "round_number": 0,
-    "game_stage": "",
+    "round_over": false,
     "spike_down": false,
+    "team_1_score": 0,
+    "team_2_score": 0,
     "game_flow": {
         "map_1": {
             "state": "over",
@@ -19,21 +20,22 @@
             "map": "lotus"
         },
         "map_3": {
-            "state": "over",
+            "state": "current",
             "winner": "team_2",
             "team_1_score": 4,
             "team_2_score": 13,
             "map": "bind"
         },
         "map_4": {
-            "state": "over",
+            "state": "upcomming",
             "winner": "team_1",
             "team_1_score": 4,
             "team_2_score": 13,
-            "map": "pearl"
+            "map": "pearl",
+            "map_pick": "team_2"
         },
         "map_5": {
-            "state": "current",
+            "state": "decider",
             "winner": "team_2",
             "team_1_score": 4,
             "team_2_score": 13,
@@ -45,14 +47,12 @@
         "abbreviation": "FNC",
         "icon_link": "https://cdn.sanity.io/images/5gii1snx/production/c32c2cb848fd3338ff23a590ec5c0e052b080f27-1000x1000.png",
         "team_info": "#2 Seed",
-        "won_games": 0,
-        "current_score": 0
+        "won_games": 0
     },
     "team_2": {
         "abbreviation": "HLV",
         "icon_link": "https://pbs.twimg.com/profile_images/1553766469955043328/td9gZwlS_400x400.jpg",
         "team_info": "#1 Seed",
-        "won_games": 0,
-        "current_score": 0
+        "won_games": 0
     }
 }

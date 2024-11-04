@@ -6,6 +6,8 @@
     --overlay_trans_green: #397b63b5;
     --overlay_red: #eb535d;
     --overlay_trans_red: #913238ad;
+    --overlay_dark: #101824;
+    --overlay_dark_trans: #10182495;
 }
 /*------ UTILITY CLASSES ------*/
 *{
@@ -37,7 +39,7 @@ body::after, body::before{
 .player-list-red-team{
     position: absolute;
     display: flex;
-    gap: 5px;
+    gap: 10px;
     flex-direction: column;
     width: 360px;
     --team-color: var(--overlay_red);
@@ -47,7 +49,7 @@ body::after, body::before{
 .player-list-green-team{
     position: absolute;
     display: flex;
-    gap: 5px;
+    gap: 10px;
     flex-direction: column;
     width: 360px;
     --team-color: var(--overlay_green);
@@ -65,7 +67,7 @@ body::after, body::before{
 .player-status{
     width: 100%;
     flex-grow: 1;
-    background-color: var(--overlay_dark);
+    background-color: var(--overlay_dark_trans);
     display: flex;
     align-items: center;
     gap: 10px;
@@ -291,12 +293,15 @@ body::after, body::before{
 .right-team > .player-dead{
     -webkit-filter: grayscale();
     filter: grayscale();
-    -webkit-mask-image: linear-gradient(to bottom, black, transparent);
-    mask-image: linear-gradient(to left, black, transparent);
+    -webkit-mask-image: linear-gradient(to left, black 0%, transparent 60%);
+    mask-image: linear-gradient(to left, black 0%, transparent 60%);
 }
 .left-team > .player-dead{
     -webkit-filter: grayscale();
     filter: grayscale();
     -webkit-mask-image: linear-gradient(to right, black, transparent);
     mask-image: linear-gradient(to right, black, transparent);
+}
+.player-dead > .player-status{
+    background-color: transparent !important;
 }

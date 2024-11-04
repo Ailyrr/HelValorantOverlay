@@ -183,15 +183,24 @@ class fileLoader{
         return {
             team_1: this.config.gameState.team_1,
             team_2: this.config.gameState.team_2,
-            game_flow: this.config.gameState.game_flow
+            game_flow: this.config.gameState.game_flow,
+            team_1_score: this.config.gameState.team_1_score,
+            team_2_score: this.config.gameState.team_2_score
         }
     }
     getGameState(){
+        let roundOver = false;
+        if(this.config.gameState.round_over == true){
+            roundOver = true;
+            this.config.gameState.round_over = false
+        }
         return {
-            switch_sides: this.config.gameState.switch_sides,
             round_number: this.config.gameState.round_number,
-            game_stage: this.config.gameState.game_stage,
             spike_down: this.config.gameState.spike_down,
+            round_over: roundOver,
+            team_1_score: this.config.gameState.team_1_score,
+            team_2_score: this.config.gameState.team_2_score
+            
         }
     }
     //Map Pick Logic

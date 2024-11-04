@@ -224,5 +224,14 @@ router.post('/deauthenticate', (req, res) => {
 router.get('/print_state', (req, res) => {
     return res.status(200).send(dataBus.config);
 })
-
+router.post('/end_round', upload.none(), (req, res) => {
+    const { winningTeam } = req.body;
+    if(winningTeam == 'team_1'){
+        dataBus.config.gameState.team_1_score += 1;
+    } else {
+        dataBus.config.gameState.team_2_score += 1;
+    }
+    dataBus.config.gameState.round_over = true;
+    return res.status(200).send({ status: true })
+})
 module.exports = router;

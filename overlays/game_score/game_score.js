@@ -3,12 +3,15 @@ class helValorantGameScore {
     constructor(){
         //Value Variables
         this.roundCounter = 0; //Set to -1 at start of round
-        this.gamePhaseTimers = [[30000, 45000], 100000, 45000, 6000] //30s or 45s ; 100s ; 45 ; 6s
-        this.currentGamePhase = -1; // -1 = idle : 0 = buy : 1 = fight : 2 = spike : 3 = post
-        this.serverGamePhase = ''; //Used for data recovered by the server. Compared to currentGamePhase for logic
         this._switchSides = false; //Is set to true for round numbers between 13-24 and every other round after that
         this.spikeDown = false;
+        this.roundOver = false; //Checks if a round is over to show the 
+        this.leftTeamPoints = 0;
+        this.rightTeamPoints = 0;
         this.interval; //Setting the timer variable
+        this.leftTeamIcon = ''; //Default icon links are unavailable
+        this.rightTeamIcon = '';//Default icon links are unavailable
+        this.currentWinPanel = null;
 
         //Element Variables
         this.roundCounterElement = document.getElementById('round-counter');
@@ -27,7 +30,7 @@ class helValorantGameScore {
         this.rightTeamContainer.innerHTML = this.formatTeamDisplay('RED', '', '../visual_assets/redTeamPlaceholder.jpg');
 
         //Animation Variables
-        this.spikeInAnimation = [{transform: 'translateY(-65px) scale(1.2)', color: 'red'}];
+        this.spikeInAnimation = [{transform: 'translateY(-80px) scale(1.2)', color: 'red'}];
         this.spikeOutAnimation = [{transform: 'translateY(0px) scale(1)', color: 'white'}];
         this.animationTiming = {duration: 350, fill: 'forwards'};
     }
@@ -37,14 +40,14 @@ class helValorantGameScore {
         //Create Initial layout of overlay with elements that will not change for the entire match;
         const res = await fetch('../get_game_configuration', {method: 'GET', crossorigin: true});
         const json = await res.json();
-
+        console.log(json)
         if(res.status === 200){
             //Parse Team Icon, Abbreviation and Information;
-            let team_1_img = (json.team_1.icon_link == '') ? '../visual_assets/blueTeamPlaceholder.jpg' : json.team_1.icon_link;
-            let team_2_img = (json.team_2.icon_link == '') ? '../visual_assets/redTeamPlaceholder.jpg' : json.team_2.icon_link;
+            this.leftTeamIcon = (json.team_1.icon_link == '') ? '../visual_assets/blueTeamPlaceholder.jpg' : json.team_1.icon_link;
+            this.rightTeamIcon = (json.team_2.icon_link == '') ? '../visual_assets/redTeamPlaceholder.jpg' : json.team_2.icon_link;
     
-            this.leftTeamContainer.innerHTML = this.formatTeamDisplay(json.team_1.abbreviation, json.team_1.team_info, team_1_img);
-            this.rightTeamContainer.innerHTML = this.formatTeamDisplay(json.team_2.abbreviation, json.team_2.team_info, team_2_img);
+            this.leftTeamContainer.innerHTML = this.formatTeamDisplay(json.team_1.abbreviation, json.team_1.team_info, this.leftTeamIcon);
+            this.rightTeamContainer.innerHTML = this.formatTeamDisplay(json.team_2.abbreviation, json.team_2.team_info, this.rightTeamIcon);
 
             //Parse Previous won games of the series by teams
             let team1WonGames = 0;
@@ -67,6 +70,10 @@ class helValorantGameScore {
                     this.rightTeamGamesWon.innerHTML += `<div class="map-won-point"></div>`;
                 }
             }
+            //Update local team scores
+            this.leftTeamPoints = json.team_1_score;
+            this.rightTeamPoints = json.team_2_score;
+            this.updateTeamScores(json.team_1_score, json.team_2_score)
 
         }
         //Start game cycle
@@ -83,60 +90,11 @@ class helValorantGameScore {
             if(json.round_number != this.roundCounter){
                 this.updateRoundNumer(json.round_number);
             }
-            if(json.game_stage != ''){
-                switch(json.game_stage){
-                    case 'buy':
-                        if(this.currentGamePhase != 0){
-                            //Check if spike is down
-                            if(this.spikeDown) {
-                                clearTimeout();
-                                this.resetSpikeAnimation()
-                            }
-                            if(this.interval) clearInterval(this.interval); //Clear any still running timers
-                            this.currentGamePhase = 0;
-                            let buyTimerIndex = 0;
-                            //Check if it is a crucial round. (1st pistol, 2nd pistol, overtime)
-                            if(this.roundCounter == 1 || this.roundCounter == 13 || this.roundCounter > 24){
-                                buyTimerIndex = 1
-                            }
-                            this.startCountdown(this.gamePhaseTimers[this.currentGamePhase][buyTimerIndex]);
-                        }
-                        break;
-                    case 'fight':
-                        if(this.currentGamePhase != 1){
-                            //Check if spike is down
-                            if(this.spikeDown) {
-                                clearTimeout();
-                                this.resetSpikeAnimation()
-                            }
-                            if(this.interval) clearInterval(this.interval); //Clear any still running timers
-                            this.currentGamePhase = 1;
-                            this.startCountdown(this.gamePhaseTimers[this.currentGamePhase])
-                        }
-                        break;
-                    case 'spike':
-                        if(this.currentGamePhase != 2 && json.spike_down == true && !this.spikeDown){
-                            this.spikeDown = true;
-                            this.currentGamePhase = 2;
-                            this.startSpikeCountDown(this.gamePhaseTimers[this.currentGamePhase])
-                        }
-                        break;
-                    case 'post':
-                        if(this.currentGamePhase != 3){
-                            //Check if spike is down
-                            if(this.spikeDown) {
-                                clearTimeout();
-                                this.resetSpikeAnimation()
-                            }
-                            if(this.interval) clearInterval(this.interval);
-                            this.currentGamePhase = 3;
-                            this.startCountdown(this.gamePhaseTimers[this.currentGamePhase]);
-                        }
-                        break;
-                    default:
-                        console.warn('Unknown game phase entered, ignoring.');
-                }
-                //Update Game Stage
+            if(json.spike_down == true && !this.spikeDown){
+                this.startSpikeCountDown(45000);
+            }
+            if(json.round_over == true && json.round_over != this.roundOver){
+                this.updateTeamScores(json.team_1_score, json.team_2_score)
             }
         }
     }
@@ -154,9 +112,38 @@ class helValorantGameScore {
                 </div>`;
     }
     updateTeamScores(leftScore, rightScore){
-        document.getElementsByClassName('score-span')[0].textContent = leftScore.toString();
-        document.getElementsByClassName('score-span')[1].textContent = rightScore.toString();
+        if(leftScore > this.leftTeamPoints) this.showRoundWinPanel('left');
+        if(rightScore > this.rightTeamPoints) this.showRoundWinPanel('right');
+        this.leftTeamPoints = leftScore;
+        this.rightTeamPoints = rightScore;
+        document.getElementsByClassName('score-span')[0].textContent = this.leftTeamPoints.toString();
+        document.getElementsByClassName('score-span')[1].textContent = this.rightTeamPoints.toString();
+        this.updateRoundNumer(this.leftTeamPoints + this.rightTeamPoints + 1);
         return;
+    }
+    showRoundWinPanel(teamName){
+        if(!this.currentWinPanel){
+            this.currentWinPanel = document.createElement('div');
+            this.currentWinPanel.classList.add('round-win-panel-container');
+            this.currentWinPanel.id = 'round-win-panel';
+            this.currentWinPanel.innerHTML = `
+                <div class="round-win-panel">
+                    <div class="round-win-panel-inner-div">
+                        <svg height="200" width="780">
+                            <path d="M5 5 L50 5 M725 5 L775 5 L775 50 M775 150 L775 195 L725 195 M50 195 L5 195 L5 150 M5 50 L5 5" fill="none" stroke="white" stroke-width="1"></path> 
+                        </svg>
+                    </div>
+                </div>`;
+            document.body.appendChild(this.currentWinPanel);
+
+            setTimeout(() => {
+                document.body.removeChild(this.currentWinPanel);
+                this.currentWinPanel = false;
+            },  3000)
+        }
+        else {
+            console.log('Panel Already Deployed')
+        }
     }
     updateRoundNumer(newRoundNumber){
         if(newRoundNumber) this.roundCounter = newRoundNumber; //Check if a new round number was set.
@@ -170,7 +157,7 @@ class helValorantGameScore {
         else {
             this._switchSides = false;
         }
-        this.roundCounterElement.textContent = `Round ${this.roundCounter}`;
+        this.roundCounterElement.textContent = `ROUND ${this.roundCounter}`;
         this.switchSides();
     }
     switchSides(){
@@ -195,27 +182,12 @@ class helValorantGameScore {
 
     }
     //Timer Logic
-    startCountdown(duration) {
-        let remainingTime = duration;
-    
-        this.interval = setInterval(() => {
-            if (remainingTime <= 0) {
-                clearInterval(this.interval);
-                this.currentGamePhase = -1;
-                this.countdownElement.innerText = '--:--';
-                return;
-            }
-    
-            remainingTime -= 1000;
-            this.countdownElement.innerHTML = this.formatTime(remainingTime);
-        }, 1000);
-    }
     startSpikeCountDown(timeMiliseconds){
         this.leftAttackIndicator.classList.add('hidden');
         this.rightAttackIndicator.classList.add('hidden');
-        this.countdownElement.classList.add('hidden');
         this.roundCounterElement.classList.add('hidden');
         this.spikeElement.animate(this.spikeInAnimation, this.animationTiming);
+        this.spikeElement.src = '../visual_assets/spike_red.png'
         //Show red spike
         setTimeout(() => {
             this.resetSpikeAnimation();
@@ -224,29 +196,14 @@ class helValorantGameScore {
     resetSpikeAnimation(){
         //Hide Red spike
         this.roundCounterElement.classList.remove('hidden');
-        this.countdownElement.classList.remove('hidden');
         this.spikeElement.animate(this.spikeOutAnimation, this.animationTiming);
+        this.spikeElement.src = '../visual_assets/spike_white.png'
         //Reset Local Variables
         this.spikeDown = false;
-        this.currentGamePhase = -1;
-        this.countdownElement.innerText = '--:--';
-        this.updateRoundNumer();
+        this.switchSides();
     }
+    //
     //Helper Functions
-    padZero(num) {
-        return num < 10 ? '0' + num : num;
-    }
-    formatTime(ms) {
-        const totalSeconds = Math.floor(ms / 1000);
-        const minutes = Math.floor((totalSeconds % 3600) / 60);
-        const seconds = totalSeconds % 60;
-    
-        if(ms < 15000 && this.currentGamePhase == 1){
-            return `<span style="color: red;">${this.padZero(minutes)}:${this.padZero(seconds)}</span>`;
-        } else {
-            return `<span style="color: white;">${this.padZero(minutes)}:${this.padZero(seconds)}</span>`;
-        }
-    }
 }
 
 //Initialize gameScore instance
