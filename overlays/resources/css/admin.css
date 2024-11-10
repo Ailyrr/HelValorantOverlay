@@ -38,7 +38,7 @@ body {
 }
 .tabs{
     width: 100%;
-    max-width: 1300px;
+    max-width: 1600px;
     background-color: var(--background-color);
     height: fit-content;
     display: flex;
@@ -65,7 +65,7 @@ body {
 .panel{
     background-color: var(--pannel-color-light);
     width: 100%;
-    max-width: 1300px;
+    max-width: 1600px;
     box-sizing: border-box;
     padding: 10px;
     height: 100%;
@@ -75,7 +75,13 @@ body {
     border-top-right-radius: 15px;
 
     display: flex;
-    gap: 40px;
+    gap: 20px;
+}
+.panel h4{
+    padding: unset;
+    margin: unset;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 .admin-header{
     position: absolute;
@@ -136,126 +142,21 @@ body {
     height: 100%;
 }
 
-.team-setup-holder{
-    max-width: unset;
+.team-preview{
+    width: 600px;
+    background-color: red;
+    height: 100%;
 }
-
 .team-editor{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.teams-preview{
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-    align-items: center;
-    justify-content: space-between;
-
-    box-sizing: border-box;
-    padding: 15px;
-
-    background-color: var(--background-color);
-    background: linear-gradient(
-        90deg, 
-        var(--overlay_green) 0%,
-        var(--background-color) 30%,
-        var(--background-color) 70%,
-        var(--overlay_red) 100%
-    );
-    border-radius: 15px;
-}
-.teams-preview span{
-    font-size: x-large;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    display: flex;
-}
-.teams-preview span h3{
-    position: relative;
-    margin: unset;
-    padding: unset;
-}
-.is-starting-team::after{
-    content: 'Starting Team';
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: xx-small;
-    font-weight: 200;
-    padding: unset;
-    margin: unset;
-    width: 80px;
-    text-align: center;
-    background-color: gold;
-    border-radius: 9999px;
-    color: black;
-}
-.teams-preview img{
-    --dimensions: 60px;
-    width: var(--dimensions);
-    height: var(--dimensions);
-    border-radius: 5px;
-}
-.teams-preview .vs-indicator{
-    color: var(--light-gray);
-    font-size: medium;
+    flex-grow: 1;
+    height: 100%;
+    background-color: blue;
 }
 
-.team-image-uploader{
-    background-color: var(--accent-color-disabled);
-    border-radius: 15px;
-    box-sizing: border-box;
-    padding: 10px;
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
-    width: fit-content;
-}
-#team-name-upload{
-    visibility: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-.team-editor input[type="text"]{
-    background-color: var(--pannel-color);
-    border: var(--white) 1px solid;
-    border-radius: 15px;
-    color: #fff;
-    box-sizing: border-box;
-    padding: 10px;
-    height: 40px; 
-}
-.team-image-uploader .main label{
-    color: #fff;
-    font-weight: 700;
-    background-color: #ffffff5f;
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-.team-image-uploader .secondary{
-    font-size: small;
-    display: flex;
-    align-items: center;
-}
-.team-image-uploader .secondary label{
-    color: var(--light-gray);
-    font-size: small;
-}
 
-.team-start-side-setter{
-    background-color: var(--background-color);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
-    padding: 10px;
-    border-radius: 15px;
-}
-/* ----- CSS IN-STREAM PAGE ------ */
+
+
+/* -----CSS IN-STREAM PAGE ------ */
 .timer-list{
     height: 100%;
     flex-grow: 1;

@@ -5,7 +5,7 @@ const crypto = require('crypto');
 class fileLoader{
     constructor(){
         this.isInitialized = false;
-
+        this.mapsAreLocked = false; //Make sure that you don't accidentally recalculate the map picks
         this._adminPassword = null; //Make this private
 
         this.config = {
@@ -205,10 +205,35 @@ class fileLoader{
     }
     //Map Pick Logic
     updateMapPick(targetIndex, map, action){
-        this.config.mapPicks.picks[targetIndex] = [map, action]
+        this.config.mapPicks.picks[targetIndex] = [map, action];
+        this.reCalculateMapFlow();
     }
+    //Recalculates the flow of maps for the overlay after changing the map picks (state: upcomming, current, over, decider)
     reCalculateMapFlow(){
-        
+        //Read all map picks that were picked
+        let chosenMaps = [];
+        for(const index in this.config.mapPicks.picks){
+            if(this.config.mapPicks.picks[index][1] != 'ban'){
+                //Find what team was supposed to have chosen this map based on index
+                // index % 2 == 0 team 1 : team 2
+                let mapChosenByTeam;
+                if(index % 2 == 0) mapChosenByTeam = 'team_1';
+                if(index % 2 == 1) mapChosenByTeam = 'team_2';
+                chosenMaps.push([...this.config.mapPicks.picks[index], mapChosenByTeam, 'upcomming']);
+            }
+        }
+        //Recalculate the map flow;
+        this.config.gameState.game_flow = {}; //Reset game flow
+        for(let i = 0; i<chosenMaps.length; i++){
+            this.config.gameState.game_flow[`map_${i+1}`] = {
+                state: chosenMaps[i][3],
+                winner: '',
+                team_1_score: 0,
+                team_2_score: 0,
+                map_pick: chosenMaps[i][2],
+                map: chosenMaps[i][0]
+            }
+        }
     }
     //Function to perpetually check for update status on player tokens to kick out inactive users
     //to prevent a potential softlock by players whose pc crashes which could result in a ghost user that is counted as registered

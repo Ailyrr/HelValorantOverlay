@@ -13,14 +13,14 @@
             "map": "icebox"
         },
         "map_2": {
-            "state": "over",
+            "state": "current",
             "winner": "team_1",
             "team_1_score": 13,
             "team_2_score": 9,
             "map": "lotus"
         },
         "map_3": {
-            "state": "current",
+            "state": "upcomming",
             "winner": "team_2",
             "team_1_score": 4,
             "team_2_score": 13,

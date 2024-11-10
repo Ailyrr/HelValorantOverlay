@@ -33,6 +33,8 @@ class helValorantGameScore {
         this.spikeInAnimation = [{transform: 'translateY(-80px) scale(1.2)', color: 'red'}];
         this.spikeOutAnimation = [{transform: 'translateY(0px) scale(1)', color: 'white'}];
         this.animationTiming = {duration: 350, fill: 'forwards'};
+        this.roundWinPanelAnimation = [{transform: 'translateX(-50%) translateY(-50%)', flter: 'blur(0px)'}, {flter: 'blur(100px)'},{transform: 'translateX(-50%) translateY(calc(540px - 100%))', flter: 'blur(0px)'}];
+        this.roundWinPanelTiming = {duration: 140, fill: 'forwards'}
     }
 
     async init(){
@@ -74,6 +76,7 @@ class helValorantGameScore {
             this.leftTeamPoints = json.team_1_score;
             this.rightTeamPoints = json.team_2_score;
             this.updateTeamScores(json.team_1_score, json.team_2_score)
+            this.updateRoundNumer(this.leftTeamPoints + this.rightTeamPoints + 1);
 
         }
         //Start game cycle
@@ -118,28 +121,46 @@ class helValorantGameScore {
         this.rightTeamPoints = rightScore;
         document.getElementsByClassName('score-span')[0].textContent = this.leftTeamPoints.toString();
         document.getElementsByClassName('score-span')[1].textContent = this.rightTeamPoints.toString();
-        this.updateRoundNumer(this.leftTeamPoints + this.rightTeamPoints + 1);
         return;
     }
     showRoundWinPanel(teamName){
+        let teamIcon;
+        if(teamName == 'left') teamIcon = this.leftTeamIcon;
+        if(teamName == 'right') teamIcon = this.rightTeamIcon;
         if(!this.currentWinPanel){
             this.currentWinPanel = document.createElement('div');
             this.currentWinPanel.classList.add('round-win-panel-container');
             this.currentWinPanel.id = 'round-win-panel';
             this.currentWinPanel.innerHTML = `
                 <div class="round-win-panel">
-                    <div class="round-win-panel-inner-div">
+                    <div class="round-win-panel-inner-div" id="win-panel-content">
                         <svg height="200" width="780">
                             <path d="M5 5 L50 5 M725 5 L775 5 L775 50 M775 150 L775 195 L725 195 M50 195 L5 195 L5 150 M5 50 L5 5" fill="none" stroke="white" stroke-width="1"></path> 
                         </svg>
+                        <span>ROUND WIN</span>
                     </div>
                 </div>`;
             document.body.appendChild(this.currentWinPanel);
 
             setTimeout(() => {
+                this.currentWinPanel.animate(this.roundWinPanelAnimation, this.roundWinPanelTiming);
+                document.getElementById('win-panel-content').innerHTML = `
+
+                            <svg height="200" width="780">
+                                <path d="M5 5 L50 5 M725 5 L775 5 L775 50 M775 150 L775 195 L725 195 M50 195 L5 195 L5 150 M5 50 L5 5" fill="none" stroke="white" stroke-width="1"></path> 
+                            </svg>
+                            <div class="round-win-panel-round-counter">
+                                ROUND ${this.roundCounter - 1}
+                            </div>
+                            <span>ROUND WIN</span>
+                            <img src="${teamIcon}">`;
+            }, 2500)
+
+            setTimeout(() => {
                 document.body.removeChild(this.currentWinPanel);
+                this.updateRoundNumer(this.leftTeamPoints + this.rightTeamPoints + 1);
                 this.currentWinPanel = false;
-            },  3000)
+            },  6000)
         }
         else {
             console.log('Panel Already Deployed')
@@ -167,19 +188,16 @@ class helValorantGameScore {
             this.leftTeamContainer.classList.add('red-team');
             this.rightTeamContainer.classList.remove('red-team');
             this.rightTeamContainer.classList.add('green-team');
-            this.leftAttackIndicator.classList.remove('hidden');
-            this.rightAttackIndicator.classList.add('hidden');
+            if(!this.spikeDown) this.leftAttackIndicator.classList.remove('hidden');
+            if(!this.spikeDown) this.rightAttackIndicator.classList.add('hidden');
         } else {
             this.leftTeamContainer.classList.remove('red-team');
             this.leftTeamContainer.classList.add('green-team');
             this.rightTeamContainer.classList.remove('green-team');
             this.rightTeamContainer.classList.add('red-team');
-            this.leftAttackIndicator.classList.add('hidden');
-            this.rightAttackIndicator.classList.remove('hidden');
+            if(!this.spikeDown) this.leftAttackIndicator.classList.add('hidden');
+            if(!this.spikeDown) this.rightAttackIndicator.classList.remove('hidden');
         }
-    }
-    mainLopp(){
-
     }
     //Timer Logic
     startSpikeCountDown(timeMiliseconds){
@@ -196,6 +214,8 @@ class helValorantGameScore {
     resetSpikeAnimation(){
         //Hide Red spike
         this.roundCounterElement.classList.remove('hidden');
+        this.leftAttackIndicator.classList.remove('hidden');
+        this.rightAttackIndicator.classList.remove('hidden');
         this.spikeElement.animate(this.spikeOutAnimation, this.animationTiming);
         this.spikeElement.src = '../visual_assets/spike_white.png'
         //Reset Local Variables

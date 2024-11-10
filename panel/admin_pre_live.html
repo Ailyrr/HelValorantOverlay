@@ -24,37 +24,25 @@
     </div>
 
     <div class="panel">
-        <div class="team-setup-holder">
-           <div class="team-editor">
-                <h4>Matchup Setup</h4>
-                <div class="teams-preview">
-                    <span>
-                        <img src="../visual_assets/user_uploads/t1.jpg" alt="">
-                        <h3>PRX</h3>
-                    </span>
-                    <span class="vs-indicator">vs</span>
-                    <span>
-                        <h3 class="is-starting-team">HLV</h3>
-                        <img src="../visual_assets/user_uploads/t2.jpg" alt="">
-                    </span>
+        <div class="team-preview">
+            <h4>Series Preview</h4>
+            <div class="teams">
+
+            </div>
+            <div class="map-flow">
+                <div class="map-being-played">
+                    <select class="map-flow-state-selector">
+                        <option value="upcomming">Upcomming</option>
+                        <option value="current">Current</option>
+                        <option value="over">Over</option>
+                    </select>
+                    <input type="number" placeholder="Team 1 Points">
+                    <input type="number" placeholder="Team 2 Points">
                 </div>
-                <input type="text" maxlength="4" placeholder="Team Abbreviation">
-                <div class="team-image-uploader">
-                    <span class="main">
-                        <label for="team-name-upload">Chose Team Icon</label>
-                        <input type="file" id="team-name-upload">
-                    </span>
-                    <span class="secondary">
-                        <label for="use-link">Use external link?</label>
-                        <input type="checkbox" id="use-link">
-                    </span>
-                </div>
-                <div class="team-start-side-setter">
-                    <input type="radio" name="side-set">
-                    <label for="side-set"><-- Starting Team (picks) --></label>
-                    <input type="radio" name="side-set" id="">
-                </div>
-           </div> 
+            </div>
+        </div>
+        <div class="team-editor">
+            <h4>Team Settings</h4>
         </div>
         <div class="map-pick-holder" id="map-pick-holder">
             

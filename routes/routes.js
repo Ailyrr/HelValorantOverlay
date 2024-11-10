@@ -234,4 +234,8 @@ router.post('/end_round', upload.none(), (req, res) => {
     dataBus.config.gameState.round_over = true;
     return res.status(200).send({ status: true })
 })
+router.get('/recalculate_maps', (req, res) => {
+    dataBus.reCalculateMapFlow();
+    return res.status(200).send({ status: true });
+})
 module.exports = router;
